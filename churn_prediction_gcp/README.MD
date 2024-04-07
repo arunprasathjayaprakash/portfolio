@@ -5,7 +5,7 @@
 ### Instructions
 
 #### 1 - Login to gcloud credentials by clicking login checkbox
-![alt text](https://github.com/arunprasathjayaprakash/projects/blob/8208337447178cabce884c3bdb1cd32b7314d90f/learning%20project/churn_prediction_gcp/data/Login_layout.png)
+![alt text](https://github.com/arunprasathjayaprakash/portfolio/blob/f01f7a1f47e61b4931e5eda7d942e46060374d5a/churn_prediction_gcp/data/Login_layout.png)
 
 #### 2 - Unselect the checkbox to prevent logging again during the main flow (will be fixed in the next version)
 ![alt text](https://github.com/arunprasathjayaprakash/projects/blob/4af8dc259af36cdbcd86711d28e878becdab38eb/learning%20project/churn_prediction_gcp/data/login_docs.png)
