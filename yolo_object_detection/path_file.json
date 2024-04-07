@@ -1,0 +1,5 @@
+{
+  "model_path": "model",
+  "input_path": "input_data",
+  "output_path": "output"
+}
