@@ -11,5 +11,5 @@
 ![alt text](https://github.com/arunprasathjayaprakash/portfolio/blob/30fe32dd9e588b2e67a9e4e857977c5002e052fe/churn_prediction_gcp/data/login_docs.png)
 
 #### 3 - Upload data in the drop area to get predictions for your live data
-![alt text](https://github.com/arunprasathjayaprakash/projects/blob/fc76fb6da858f6fa5fde630f4542747b5dd70d4c/learning%20project/churn_prediction_gcp/data/prediction_layout.png)
+![alt text](https://github.com/arunprasathjayaprakash/portfolio/blob/67f73e8b795074a19965c95c47e8696fe847b014/churn_prediction_gcp/data/prediction_layout.png)
 
