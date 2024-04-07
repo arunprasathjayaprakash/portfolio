@@ -9,4 +9,4 @@
 #### 2 - Run the command below :
 ####  <sub> streamlit run app.py </sub>
 ####
-![alt text](https://github.com/arunprasathjayaprakash/projects/blob/0fc5fe6d39eead92bf90f22adb2c0def22db87af/learning%20project/yolo_object_detection/output/image.png)
+![alt text](https://github.com/arunprasathjayaprakash/portfolio/blob/58cd6c6dee1f2125a1e2644c90a8a8660447bfb2/yolo_object_detection/output/image.png)
