@@ -57,4 +57,5 @@ We create another ResNet18 model and load custom weights. We then use ART's `Adv
 ### Task 11: Evaluate Model's Performance After Adversarial Training
 
 Finally, we evaluate the performance of the adversarially trained model on the test dataset to verify the improvement in accuracy and robustness post-adversarial training.
+
 ---
