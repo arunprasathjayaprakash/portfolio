@@ -6,6 +6,7 @@ from google.cloud import storage , aiplatform
 from etl_pipe import process_data
 from google.protobuf import json_format
 
+
 def highlight_churn(s):
     """
     Highlight cells in the 'Churn' column based on the condition
