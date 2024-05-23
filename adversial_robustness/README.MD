@@ -1,105 +1,106 @@
 # Adversarial Robustness of Neural Networks
 
-This repository contains a Jupyter notebook that demonstrates how to evaluate and improve the adversarial robustness of neural networks using various techniques, including adversarial attacks and training with adversarial examples. The notebook utilizes popular libraries such as PyTorch, timm, and the Adversarial Robustness Toolbox (ART).
+This repository contains an implementation for evaluating and improving the adversarial robustness of neural networks using PyTorch and the Adversarial Robustness Toolbox (ART).
 
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Notebook Contents](#notebook-contents)
-  - [Task 1: Import Libraries](#task-1-import-libraries)
-  - [Task 2: Load the Pretrained Model](#task-2-load-the-pretrained-model)
-  - [Task 3: Load the Dataset](#task-3-load-the-dataset)
-  - [Task 4: Perform Adversarial Attacks](#task-4-perform-adversarial-attacks)
-  - [Task 5: Visualize Adversarial Images](#task-5-visualize-adversarial-images)
-  - [Task 6: Evaluate Model Performance on Adversarial Images](#task-6-evaluate-model-performance-on-adversarial-images)
-  - [Task 7: Evaluate Model Performance on Normal Images](#task-7-evaluate-model-performance-on-normal-images)
-  - [Task 8: Train a Classifier to Detect Adversarial Examples](#task-8-train-a-classifier-to-detect-adversarial-examples)
-  - [Task 9: Identify Adversarial Examples From Normal Examples](#task-9-identify-adversarial-examples-from-normal-examples)
-  - [Task 10: Train the Model With Adversarial Examples](#task-10-train-the-model-with-adversarial-examples)
-  - [Task 11: Evaluate Model's Performance After Adversarial Training](#task-11-evaluate-models-performance-after-adversarial-training)
+- [Project Structure](#project-structure)
+- [Tasks Overview](#tasks-overview)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
-To run this notebook, you will need to install the following dependencies:
+1. Clone the repository:
 
-```bash
-pip install pandas numpy opencv-python matplotlib timm adversarial-robustness-toolbox torch torchvision
-```
-
-Ensure you have the necessary files in the `/files` directory, including pretrained model weights and adversarial detection models.
-
-## Usage
-
-1. Clone this repository:
-
-```bash
-git clone https://github.com/arunprasathjayaprakash/portfolio/tree/266b3c1a356f614c16c016343a28ec76092295fc/adversial_robustness
-cd adversarial-robustness
-```
+    ```bash
+    git clone https://github.com/arunprasathjayaprakash/portfolio/tree/3d42c9587706f96dc323f93e7cd95728fdb35ff3/adversial_robustness
+    cd adversarial-robustness
+    ```
 
 2. Install the required packages:
 
-```bash
-pip install -r requirements.txt
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+## Usage
+
+1. Load the Jupyter notebook:
+
+    ```bash
+    jupyter notebook Adverserial_robustness.ipynb
+    ```
+
+2. Follow the steps in the notebook to:
+    - Import necessary libraries.
+    - Load and modify pretrained models.
+    - Load and preprocess datasets.
+    - Perform adversarial attacks.
+    - Visualize adversarial images.
+    - Evaluate model performance on adversarial and clean images.
+    - Train a classifier to detect adversarial examples.
+    - Evaluate model's performance after adversarial training.
+
+## Project Structure
+
+```
+Adversarial_Robustness/
+│
+├── files/                   # Directory containing model weight files
+├── Adverserial_robustness.ipynb  # Jupyter notebook for adversarial robustness tasks
+├── requirements.txt         # Python dependencies
+└── README.md                # Project README file
 ```
 
-3. Run the Jupyter notebook:
-
-```bash
-jupyter notebook
-```
-
-Open `Adversarial_Robustness.ipynb` in the Jupyter interface and follow the instructions in the notebook.
-
-## Notebook Contents
+## Tasks Overview
 
 ### Task 1: Import Libraries
 
-Import necessary libraries and set up the environment for the tasks ahead.
+Import necessary libraries and check the current working directory.
 
 ### Task 2: Load the Pretrained Model
 
-Load a pretrained ResNet-34 model, modify its architecture, and load custom weights.
+Load the pretrained ResNet-34 model and modify it with custom weights.
 
 ### Task 3: Load the Dataset
 
-Load and transform the CIFAR-10 dataset for training and testing.
+Load and preprocess the CIFAR-10 dataset using torchvision and sklearn.
 
 ### Task 4: Perform Adversarial Attacks
 
-Create adversarial examples using the Fast Gradient Method (FGM).
+Use the Fast Gradient Method (FGM) to generate adversarial examples.
 
 ### Task 5: Visualize Adversarial Images
 
-Display original and adversarial images to understand the differences.
+Display adversarial images to visualize the impact of the attacks.
 
 ### Task 6: Evaluate Model Performance on Adversarial Images
 
-Evaluate the model's performance on adversarial examples.
+Evaluate the model's performance on adversarial images to assess its robustness.
 
 ### Task 7: Evaluate Model Performance on Normal Images
 
-Evaluate the model's performance on the original dataset.
+Evaluate the model's performance on clean images for comparison.
 
 ### Task 8: Train a Classifier to Detect Adversarial Examples
 
-Train a binary classifier to distinguish between adversarial and normal examples.
+Train a binary classifier to detect adversarial examples from clean images.
 
 ### Task 9: Identify Adversarial Examples From Normal Examples
 
-Use the trained classifier to detect adversarial examples.
+Use the trained classifier to distinguish between adversarial and clean images.
 
 ### Task 10: Train the Model With Adversarial Examples
 
-Train the model with both normal and adversarial examples to improve robustness.
+Use adversarial training to improve the model's robustness against attacks.
 
 ### Task 11: Evaluate Model's Performance After Adversarial Training
 
-Evaluate the model's performance after incorporating adversarial training.
+Assess the model's performance on clean and adversarial images after adversarial training.
 
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request or open an Issue.
+
