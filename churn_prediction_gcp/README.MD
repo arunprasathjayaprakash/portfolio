@@ -9,7 +9,6 @@ This repository contains a Streamlit application for predicting customer churn u
 - [Features](#features)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
