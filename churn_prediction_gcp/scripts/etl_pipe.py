@@ -3,7 +3,6 @@ import numpy as np
 
 def process_data(data,train=False):
 
-    # data = pd.read_csv(data_path)
     numerical_df = data.select_dtypes(include='number')
     numerical_df.drop('CustomerID', axis=1, inplace=True)
     outlier_columns = []
@@ -20,16 +19,6 @@ def process_data(data,train=False):
     data.dropna(inplace=True)
     data.columns = ['_'.join(column.split(' ')) if len(column.split(' ')) == 2 else column for column in
                     data.columns]
-    categorical_colums = data.select_dtypes(include='object').columns
-    numerical_columns = data.select_dtypes(include='number').columns
-
-    # transformations = []
-    #
-    # for column in categorical_colums:
-    #     transformations.append({'categorical': {'column_name': column}})
-    #
-    # for num_column in numerical_columns:
-    #     transformations.append({'numerical': {'column_name': num_column}})
 
     if train:
         features = data.drop('Churn', axis=1)
