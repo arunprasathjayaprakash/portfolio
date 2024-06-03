@@ -9,7 +9,6 @@ This repository contains a Streamlit application for object detection in videos 
 - [Features](#features)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
