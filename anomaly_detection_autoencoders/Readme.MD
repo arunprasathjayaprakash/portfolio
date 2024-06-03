@@ -1,7 +1,3 @@
-Sure, I'll create a README file for the provided Jupyter notebook `anomaly_detection_with_auto_encoders.ipynb`. Here is the README content:
-
----
-
 # Anomaly Detection with Autoencoders
 
 This repository contains a Jupyter notebook for performing anomaly detection using autoencoders. Autoencoders are neural networks used for unsupervised learning of efficient codings. This project demonstrates how to use autoencoders to detect anomalies in data.
