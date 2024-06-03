@@ -8,7 +8,6 @@ This repository contains a Jupyter notebook for performing anomaly detection usi
 - [Usage](#usage)
 - [Features](#features)
 - [Project Structure](#project-structure)
-- [Contributing](#contributing)
 
 ## Installation
 
@@ -43,8 +42,7 @@ This repository contains a Jupyter notebook for performing anomaly detection usi
 
 ```
 anomaly_detection_with_auto_encoders/
-│
-├── data/                    # Directory to store data files
+│                 
 ├── anomaly_detection_with_auto_encoders.ipynb  # Jupyter notebook for anomaly detection
 ├── requirements.txt         # Python dependencies
 ├── README.md                # Project README file

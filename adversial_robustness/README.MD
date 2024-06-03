@@ -47,7 +47,6 @@ This repository contains an implementation for evaluating and improving the adve
 ```
 Adversarial_Robustness/
 │
-├── files/                   # Directory containing model weight files
 ├── Adverserial_robustness.ipynb  # Jupyter notebook for adversarial robustness tasks
 ├── requirements.txt         # Python dependencies
 └── README.md                # Project README file
