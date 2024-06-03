@@ -16,7 +16,6 @@ This repository contains an implementation for evaluating and improving the adve
 
     ```bash
     git clone https://github.com/arunprasathjayaprakash/portfolio/tree/3d42c9587706f96dc323f93e7cd95728fdb35ff3/adversial_robustness
-    cd adversarial-robustness
     ```
 
 2. Install the required packages:

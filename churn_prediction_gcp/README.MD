@@ -16,7 +16,6 @@ This repository contains a Streamlit application for predicting customer churn u
 
     ```bash
     git clone https://github.com/arunprasathjayaprakash/portfolio/tree/b96aa2b5db63771b43d6cb519ae714a7c522e9f1/churn_prediction_gcp
-    cd churn-prediction-app
     ```
 
 2. Install the required packages:
@@ -25,7 +24,7 @@ This repository contains a Streamlit application for predicting customer churn u
     pip install -r requirements.txt
     ```
 
-3. Set up Google Cloud credentials. Ensure that you have the Google Cloud SDK installed and authenticated:
+3. Set up Google Cloud credentials. Ensure that you have the Google Cloud SDK installed and authenticated (skip this to login using UI):
 
     ```bash
     gcloud auth application-default login
