@@ -1,5 +1,3 @@
-Based on the project structure from the provided image and the description, here is a `README.md` file suitable for a GitHub repository.
-
 
 # Automating Contracts
 
