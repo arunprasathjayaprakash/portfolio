@@ -1,7 +1,6 @@
 import torch
 from transformers import AutoTokenizer , AutoModelForSequenceClassification
 
-
 class ContractNLIDataset(torch.utils.data.Dataset):
     def __init__(self,encodings,labels=[]):
         self.encodings = encodings

@@ -17,10 +17,8 @@ def load_data(data_path,req_count):
                 for annot_value in v:
                     for ndx_value in annot_value['annotations']:
                         hypothesis_list.append(ndx_value)
-                        # labels_list.append(data['labels'][ndx_value]['hypothesis'])
                         target_list.append(annot_value['annotations'][ndx_value]['choice'])
                         text_list.append(data['documents'][counter]['text'])
-
                 counter += 1
 
 
