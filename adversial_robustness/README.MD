@@ -8,7 +8,6 @@ This repository contains an implementation for evaluating and improving the adve
 - [Usage](#usage)
 - [Project Structure](#project-structure)
 - [Tasks Overview](#tasks-overview)
-- [Contributing](#contributing)
 
 ## Installation
 
