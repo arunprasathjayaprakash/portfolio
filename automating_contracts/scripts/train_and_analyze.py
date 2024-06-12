@@ -34,11 +34,11 @@ def train_and_predict(data_path,
   args: train data path , validation path , testing path , retrain option to train new model with data change
   returns: training report
   '''
-  data_path = r'C:\csulb_projects\portfolio_projects\automating_contracts\data\train.json'
-  train_data = load_data(data_path, 35)
-  valid_pth = r'C:\csulb_projects\portfolio_projects\automating_contracts\data\dev.json'
-  valid_data = load_data(valid_pth, 10)
-  test_path = r'C:\csulb_projects\portfolio_projects\automating_contracts\data\test.json'
+
+  #For lesser train time a sample of small size is selected here to make it easy to train on local
+  #Change count based on platform specifications
+  train_data = load_data(data_path, 35) # Count - Samples required for each data split
+  valid_data = load_data(valid_path, 10)
   test_data = load_data(test_path, 5)
 
   # visualize_stats(train_data,'training','Text','labels')
@@ -60,12 +60,6 @@ def train_and_predict(data_path,
   train_data['target'] = train_data['target'].map({"NotMentioned": 0, "Entailment": 1, "Contradiction": 2})
   valid_data['target'] = valid_data['target'].map({"NotMentioned": 0, "Entailment": 1, "Contradiction": 2})
   test_data['target'] = test_data['target'].map({"NotMentioned": 0, "Entailment": 1, "Contradiction": 2})
-
-
-  contract_data = ContractNLIDataset(train_encoded, train_data['target'].values)
-
-  # testing the function for sample data
-  contract_data.__getitem__(3)
 
   # Data for training , validation and testing
   train_dataset = ContractNLIDataset(train_encoded, train_data['target'].values)
@@ -109,7 +103,7 @@ def train_and_predict(data_path,
 
   #save model
   '''
-  if misclass for a model is near to zero save the model
+  if misclass for a model is lesser than misclass_threshold save the model
   '''
   if albert_misclass <= misclass_threshold and distill_bert_misclass <= misclass_threshold:
     train_model.save_model('models/albert_model')
@@ -170,10 +164,10 @@ def inference(data_path,predicter_model="albert"):
 '''
 Uncomment this to test script as individual modules
 '''
-if __name__ == "__main__":
-  data_path = r'C:\csulb_projects\portfolio_projects\automating_contracts\data\train.json'
-  valid_path = r'C:\csulb_projects\portfolio_projects\automating_contracts\data\dev.json'
-  test_path = r'C:\csulb_projects\portfolio_projects\automating_contracts\data\test.json'
-  misclass_threshold = 0.2
-  # train_and_predict(data_path,valid_path,test_path,misclass_threshold)
-  inference(data_path)
+# if __name__ == "__main__":
+#   data_path
+#   valid_path
+#   test_path
+#   misclass_threshold = 0.2
+#   # train_and_predict(data_path,valid_path,test_path,misclass_threshold)
+#   inference(data_path)
