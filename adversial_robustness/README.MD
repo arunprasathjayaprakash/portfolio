@@ -2,6 +2,10 @@
 
 This repository contains an implementation for evaluating and improving the adversarial robustness of neural networks using PyTorch and the Adversarial Robustness Toolbox (ART).
 
+Note: 
+- This is an implementation notebook and work and infrastructure to run in whole data needs to be done to make a working prototype.
+- For implementation the data has been reduced to minimal to explain the implementation and its use cases
+
 ## Table of Contents
 
 - [Installation](#installation)
