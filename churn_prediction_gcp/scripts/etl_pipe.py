@@ -2,6 +2,11 @@ import pandas as pd
 import numpy as np
 
 def process_data(data,train=False):
+    '''Returns processed data for model
+
+    args: data , train(optional)
+    returns: dataframe
+    '''
 
     numerical_df = data.select_dtypes(include='number')
     numerical_df.drop('CustomerID', axis=1, inplace=True)

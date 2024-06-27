@@ -17,6 +17,11 @@ def highlight_churn(s):
         return 'background-color: green'
 
 def app():
+    '''Hosts streamlit application on default port
+
+    args: None
+    returns: None
+    '''
     st.title('Churn Prediction')
     st.subheader('Analytics By Vertex AI')
 
