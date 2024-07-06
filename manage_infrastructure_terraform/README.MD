@@ -30,11 +30,6 @@ deployment on the Google Cloud Platform (GCP) using a combination of CLI and Ter
 ## Project Structure
 ````
 manage_infrastructure_terraform/
-│
-├── $PWD/
-│
-├── .terraform/
-│
 ├── application/
 │ ├── data/
 │ ├── scripts/
