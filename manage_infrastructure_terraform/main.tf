@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = "portfolio_project_key.json"
+  credentials = "<Credentials JSON File>"
   project = var.project_id
   region = var.region
 }
@@ -40,7 +40,7 @@ resource "google_artifact_registry_repository_iam_binding" "admin" {
   repository = google_artifact_registry_repository.default.repository_id
   role = "roles/artifactregistry.writer"
   members = [
-    "user:arunprasathjayaprakash12@gmail.com"
+    "user:<Service Account Email>"
   ]
 }
 
@@ -73,7 +73,7 @@ resource "google_cloud_run_service" "churn-docker" {
 terraform {
   backend "gcs" {
     bucket = "portfolio_buckets_2024"
-    credentials = "portfolio_project_key.json"
+    credentials = "<Credentials JSON File>"
     prefix = "terraform/state_v1"
   }
 }
