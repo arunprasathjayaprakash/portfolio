@@ -3,6 +3,9 @@
 This project demonstrates how to streamline containerized application in our case the Churn prediction with streamlit
 deployment on the Google Cloud Platform (GCP) using a combination of CLI and Terraform scripts using Google Cloud Run.
 
+Note: Credentials.JSON , Service Account Details and terraform plan files are not included.Create
+files with GCP account during runtime
+
 ## Table of Contents
 - [Prerequisites](#prerequisites)
 - [Technologies](#technologies)
