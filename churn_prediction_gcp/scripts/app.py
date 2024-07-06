@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 import os
-from gcloud_connect import get_credentials , retrive_connection , get_endpoints , login_gcloud
+from gcloud_connect import get_endpoints , login_gcloud
+from gcloud_services import create_dataset_artifact
 from google.cloud import storage , aiplatform
 from etl_pipe import process_data
 from google.protobuf import json_format
@@ -45,14 +46,18 @@ def app():
         st.info('Select checkbox and model if you want to retrain')
         retrain_option = st.checkbox('Retrain model (if You have selected checkbox)')
         model_value = st.selectbox('Select Which model of your choice',['Decision Tree','Random Forest','XGBoost'])
+        bucket_name = st.selectbox('Enter a valid bucket name in GCS')
         submit = st.form_submit_button()
 
         if submit:
             #check for retrain_model
-            if retrain_option:
+            if retrain_option and uploaded_file!= None:
                 #Yet to be developed for v0.1
                 model = model_value
-                pass
+                if model == "Decision Tree":
+                    processed_data = process_data(uploaded_file)
+                    dataset = create_dataset_artifact(bucket_name,uploaded_file,'Churn_Dataset')
+
 
             contents = pd.read_csv(uploaded_file)
             processed_test_data = process_data(contents)

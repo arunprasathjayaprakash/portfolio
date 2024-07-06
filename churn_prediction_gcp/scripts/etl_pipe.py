@@ -10,6 +10,7 @@ def process_data(data,train=False):
 
     numerical_df = data.select_dtypes(include='number')
     numerical_df.drop('CustomerID', axis=1, inplace=True)
+    numerical_df.dropna(inplace=True)
     outlier_columns = []
 
     for columns in numerical_df:

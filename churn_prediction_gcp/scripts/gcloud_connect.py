@@ -21,7 +21,7 @@ def retrive_connection():
         return bucket_names
     except:
         raise "Check gcloud intialization credentials"
-def get_credentials(storage_client,bucket_name,blob_name='credentials_2024_educative'):
+def get_credentials(storage_client,bucket_name,blob_name='portfolio_buckets_2024'):
     ''' Returns credential data from SSO default google authentication
 
     args: string storage , bucket name , blob name
@@ -44,8 +44,23 @@ def get_endpoints():
     '''
     # bucket = storage_client.bucket(bucket_name[-1])
     endpoint = aiplatform.Endpoint.list(filter="display_name=Churn_model_endpoint")
-    endpoint_client = aiplatform.Endpoint(endpoint[0].name)
-    return endpoint_client
+    try:
+        endpoint_client = aiplatform.Endpoint(endpoint[0].name)
+        return endpoint_client
+    except:
+        with st.form("Could Not find any endpoint for prediction.",clear_on_submit=True):
+            option = st.radio('Do you want to train new model with data?',
+                     ('Yes','No'))
+            submit = st.form_submit_button()
+            if submit and option == 'Yes':
+                st.session_state.page = "main"
+                return
+            elif submit and option == 'No':
+                st.info('No prediction endpoints were found select retrain option and upload data to train'
+                        )
+                return None
+
+
 
 def login_gcloud():
     ''' Returns credentials and endpoints
