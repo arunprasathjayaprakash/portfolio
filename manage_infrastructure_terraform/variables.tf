@@ -8,7 +8,7 @@ variable "project_id" {
 }
 variable "state_bucket" {
   type = string
-  default = "portfolio_proejct_files"
+  default = "portfolio_buckets_2024"
 }
 variable "cluster_name" {
   type = string
