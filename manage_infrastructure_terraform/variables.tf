@@ -42,13 +42,3 @@ variable "preemptible" {
   default = "False"
 }
 
-#region = "us-east1"
-#project_id = "oceanic-beach-419220"
-#state_bucket = "credentials_2024_educative"
-#cluster_name = "churn-prediction-cluster"
-#service_name = "churn-prediction-cluster"
-#k8s_version = "1.29.4-gke.1043002"
-#min_node_count = "1"
-#max_node_count = "4"
-#machine_type = "n1-standard-1"
-#preemptible = "False"

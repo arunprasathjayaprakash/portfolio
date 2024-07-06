@@ -4,17 +4,6 @@ provider "google" {
   region = var.region
 }
 
-#resource "google_storage_bucket" "state" {
-#  location = "us-east1"
-#  name     = var.state_bucket
-#  project = var.project_id
-#  storage_class = "standard"
-#  force_destroy = "true"
-#  versioning {
-#    enabled = false
-#  }
-#}
-
 resource "google_container_cluster" "primary" {
   location = "us-east1"
   name     = "churn-prediction-cluster"
@@ -54,28 +43,6 @@ resource "google_artifact_registry_repository_iam_binding" "admin" {
     "user:arunprasathjayaprakash12@gmail.com"
   ]
 }
-
-#resource "google_container_node_pool" "primary_nodes" {
-#  cluster = google_container_cluster.primary.name
-#  location = "us-east1"
-#  node_count = 1
-#
-#  node_config {
-#    machine_type = "e2-small"
-#    oauth_scopes = [
-#      "https://www.googleapis.com/auth/cloud-platform"
-#    ]
-#    disk_size_gb = 10
-#
-#  }
-#  max_pods_per_node = 10
-#}
-
-#resource "google_service_account" "cloud_run_service_account" {
-#  account_id   = "cloud-run-sa"
-#  display_name = "Cloud Run Service Account"
-#}
-
 
 resource "google_cloud_run_service" "churn-docker" {
   location = "us-east1"
