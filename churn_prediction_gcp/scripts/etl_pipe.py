@@ -1,13 +1,14 @@
 import pandas as pd
 import numpy as np
+from io import BytesIO
 
-def process_data(data,train=False):
+def process_data(data):
     '''Returns processed data for model
 
     args: data , train(optional)
     returns: dataframe
     '''
-
+    data = pd.read_csv(data)
     numerical_df = data.select_dtypes(include='number')
     numerical_df.drop('CustomerID', axis=1, inplace=True)
     numerical_df.dropna(inplace=True)
@@ -26,11 +27,5 @@ def process_data(data,train=False):
     data.columns = ['_'.join(column.split(' ')) if len(column.split(' ')) == 2 else column for column in
                     data.columns]
 
-    if train:
-        features = data.drop('Churn', axis=1)
-        labels = data['Churn']
-
-        return features , labels
-    else:
-        return data
+    return data
 
