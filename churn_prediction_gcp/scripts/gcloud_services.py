@@ -18,6 +18,7 @@ def upload_to_bucket(bucket_name, file, destination_blob_name):
     # Upload the file if it doesn't exist
     blob.upload_from_file(csv_bytes, rewind=True)
     st.success(f"File uploaded to {bucket_name}/{destination_blob_name}.")
+    return destination_blob_name
 
 
 def create_endpoint(endpoint_name,location_path):
@@ -32,7 +33,7 @@ def create_endpoint(endpoint_name,location_path):
     endpoint_result = response.result()
     return endpoint_result
 
-def create_dataset_artifact(bucket_name , source_file ,file_name,display_name):
+def create_dataset_artifact(bucket_name , source_file ,file_name,display_name,project_id):
     '''Creates and Returns tabular datset artifact from gcp bucket
 
     args: Bucket name , file name , display nam
@@ -40,16 +41,16 @@ def create_dataset_artifact(bucket_name , source_file ,file_name,display_name):
     '''
     bucket_names = retrive_buckets()
     if bucket_name in bucket_names:
-        data_path = f'gs://{bucket_name}/{file_name}'
-        upload_to_bucket(bucket_name,source_file,display_name)
+        blob_name = upload_to_bucket(bucket_name, source_file, display_name)
+        data_path = f'gs://{bucket_name}/{blob_name}'
         cloud_dataset = aiplatform.TabularDataset.create(
             display_name=f"{display_name}",
             gcs_source=[data_path]
         )
     else:
-        create_bucket_if_not_exists(bucket_name)
-        data_path = f'gs://{bucket_name}/{file_name}'
-        upload_to_bucket(bucket_name, source_file, display_name)
+        create_bucket_if_not_exists(bucket_name,project_id)
+        blob_name = upload_to_bucket(bucket_name, source_file, display_name)
+        data_path = f'gs://{bucket_name}/{blob_name}'
         cloud_dataset = aiplatform.TabularDataset.create(
             display_name=f"{display_name}",
             gcs_source=[data_path]

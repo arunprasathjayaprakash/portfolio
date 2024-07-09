@@ -27,17 +27,9 @@ def check_running_jobs(project_id, region):
 
     return False , finished_pipelines
 
-    # for job in jobs:
-    #     job_dict = MessageToDict(job._pb)
-    #     state = job_dict.get('state')
-    #     if state in ['JOB_STATE_PENDING', 'JOB_STATE_RUNNING']:
-    #         print(f"Found a running job: {job_dict['displayName']} with state: {state}")
-    #         return True
-    # return False
-
-def create_bucket_if_not_exists(bucket_name):
+def create_bucket_if_not_exists(bucket_name,project_id):
     """Creates a new bucket if it does not already exist."""
-    storage_client = storage.Client()
+    storage_client = storage.Client(project=project_id)
     bucket = storage_client.bucket(bucket_name)
     if not bucket.exists():
         st.warning('No Bucket were found with the given name. Creating One')
@@ -66,27 +58,19 @@ def retrive_buckets():
         return bucket_names
     except:
         raise "Check gcloud intialization credentials"
-# def check_running_jobs(project_id,region):
-#     ''' Returns credential data from SSO default google authentication
-#
-#     args: string storage , bucket name , blob name
-#     returns: json
-#     '''
-#     # bucket = storage_client.bucket(bucket_name[-1])
-#     client = aiplatform.JobServiceClient(client_options={
-#         'api_endpoint': f'{region}-aiplatform.googleapis.com'
-#     })
-#
-#     parent = f'projects/{project_id}/locations/{region}'
-#     jobs = client.list_custom_jobs(parent=parent)
-#
-#     for job in jobs:
-#         job_dict = MessageToDict(job._pb)
-#         state = job_dict.get('state')
-#         if state in ['JOB_STATE_PENDING', 'JOB_STATE_RUNNING']:
-#             print(f"Found a running job: {job_dict['displayName']} with state: {state}")
-#             return True
-#     return False
+def get_credentials(storage_client,bucket_name,blob_name):
+    ''' Returns credential data from SSO default google authentication
+
+    args: string storage , bucket name , blob name
+    returns: json
+    '''
+    # bucket = storage_client.bucket(bucket_name[-1])
+    data_blob = storage_client.list_blobs(bucket_name[-1])
+
+    for blob in data_blob:
+        if blob.name == blob_name:
+            credentials_data = json.loads(blob.download_as_text())
+            return credentials_data
 
 #Module testing function
 def get_endpoints():
@@ -96,24 +80,24 @@ def get_endpoints():
     returns: endpoint object
     '''
     # bucket = storage_client.bucket(bucket_name[-1])
-    endpoint = aiplatform.Endpoint.list(filter="display_name=Churn_model_endpoint")
-    endpoint_client = aiplatform.Endpoint(endpoint[0].name)
-    return endpoint_client
-    # except:
-    #     with st.form("Could Not find any endpoint for prediction.",clear_on_submit=True):
-    #         option = st.radio('Do you want to train new model with data?',
-    #                  ('Yes','No'))
-    #         submit = st.form_submit_button()
-    #         if submit and option == 'Yes':
-    #             st.session_state.page = "main"
-    #             return
-    #         elif submit and option == 'No':
-    #             st.info('No prediction endpoints were found select retrain option and upload data to train'
-    #                     )
-    #             return None
+    # endpoint_id = []
+    # client = aiplatform_v1.EndpointServiceClient(
+    #     client_options={'api_endpoint': 'us-central1-aiplatform.googleapis.com'})
+    # parent = f'projects/{project_id}/locations/us-central1'
+    # request = aiplatform_v1.ListEndpointsRequest(parent=parent)
+    # page_result = client.list_endpoints(request=request)
+    # for result in page_result:
+    #     endpoint_id.append(result.name)
+    #
+    # return endpoint_id
 
-
-
+    endpoint = aiplatform.Endpoint.list()
+    if endpoint:
+        endpoint_client = aiplatform.Endpoint(endpoint[0].name)
+        return endpoint_client
+    else:
+        st.error("No endpoint is present. Please train and deploy the model")
+        return None
 def login_gcloud():
     ''' Returns credentials and endpoints
 

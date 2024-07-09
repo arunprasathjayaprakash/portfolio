@@ -1,34 +1,37 @@
 import pandas as pd
 import numpy as np
-from io import BytesIO
-from sklearn.preprocessing import MinMaxScaler
+import streamlit as st
+
+import streamlit
+from sklearn.preprocessing import MinMaxScaler , OneHotEncoder
 def calculate_mad(df):
   mean_value = np.mean(df)
   absolute_deviations = [abs(x - mean_value) for x in df]
   mad = np.mean(absolute_deviations)
   return mad
 
-def process_data(data,train=False):
+def process_data(data,drop_columns,target_column,fillna=True,train=False):
     '''Returns processed data for model
 
     args: data , train(optional)
     returns: dataframe
     '''
-    if train:
-        pass
 
-    data = pd.read_csv(data)
-    data.drop(['CustomerID','Churn'], axis=1, inplace=True)
+    '''
+    Simple processing since vertex Ai does the preprocessing and analyzing in vertex ai platform for best model results
+    '''
+
+    data.drop(drop_columns, axis=1, inplace=True)
     numerical_columns = data.select_dtypes(include='number').columns
     categorical_columns = data.select_dtypes(include='object').columns
     outlier_columns = []
 
-
     for column in numerical_columns:
-        zscores = np.abs((data[column] - data[column].median()) / calculate_mad(data[column]))
-        thesh = 3.5
-        if (zscores > thesh).any():
-            outlier_columns.append(column)
+        if column != 'Churn':
+            zscores = np.abs((data[column] - data[column].median()) / calculate_mad(data[column]))
+            thesh = 3.5
+            if (zscores > thesh).any():
+                outlier_columns.append(column)
 
     for column in outlier_columns:
         twenty_per = np.percentile(data[column], 25)
@@ -47,11 +50,25 @@ def process_data(data,train=False):
     if normalizing_cols:
         scaler = MinMaxScaler()
         for column in normalizing_cols:
-            data[column] = scaler.fit_transform(data[column])
+            data[column] = scaler.fit_transform(data[column].values.reshape(-1,1))
 
-    data.dropna(inplace=True)
-    data.columns = ['_'.join(column.split(' ')) if len(column.split(' ')) == 2 else column for column in
-                    data.columns]
+    cat_encoder = OneHotEncoder()
+    encoded_features = cat_encoder.fit_transform(data[categorical_columns]).toarray()
+    encoded_df = pd.DataFrame(encoded_features)
 
-    return data
+    # Combining numeric and encoded categorical features
+    processed_data = pd.concat([data[numerical_columns], encoded_df], axis=1)
+
+    if fillna:
+        processed_data[numerical_columns] = processed_data[numerical_columns].fillna(0)
+    else:
+        data.dropna(inplace=True)
+
+    processed_data.columns = [str(column) for column in processed_data.columns]
+
+    if train:
+        return processed_data
+    else:
+        processed_data.drop(target_column,axis=1,inplace=True)
+        return processed_data
 
