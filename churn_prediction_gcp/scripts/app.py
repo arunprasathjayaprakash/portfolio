@@ -4,12 +4,10 @@ import json
 import os
 from gcloud_connect import get_endpoints , login_gcloud , check_running_jobs
 from gcloud_services import (create_dataset_artifact , initialize_job , train_model , deploy , create_endpoint ,
-                             deploy_model_to_endpoint)
-from google.cloud import aiplatform_v1 ,aiplatform
+                             deploy_model_to_endpoint,download_json_from_gcs)
+from google.cloud import aiplatform_v1
 from etl_pipe import process_data
-from google.protobuf import json_format
-from google.protobuf.struct_pb2 import Value
-
+from gcloud_connect import retrive_buckets
 
 def highlight_churn(s):
     """
@@ -73,6 +71,7 @@ def app():
             'Select Which model of your choice',
             ['Decision Tree', 'Random Forest', 'XGBoost'],
         )
+        st.info("You can write your own training here. Head to the code section and explore the code")
 
 
     if deploybox:
@@ -100,26 +99,6 @@ def app():
 
     if undeploy:
         st.info("Currently in development")
-    #     try:
-    #         with st.form('un_deploy_input',clear_on_submit=True):
-    #             selection = st.radio('Do you want to remove deployment and delete endpoint ?',options=['Yes','No'],index=1)
-    #             submit = st.form_submit_button()
-    #
-    #             if submit and selection == 'Yes':
-    #                 with st.spinner("Deploying pretrained from your default bucket."):
-    #                     client = aiplatform_v1.Endpoint()
-    #                     _ , finished_pipeline_model_id = check_running_jobs(project_id, 'us-central1')
-    #                     location_path = f"projects/{project_id}/locations/us-central1"
-    #                     model = client.get_model(name=finished_pipeline_model_id[0])
-    #                     with st.spinner("Creating Endpoint.."):
-    #                         endpoint = create_endpoint('churn_online_prediction',location_path)
-    #                     with st.spinner(f"Deploying Model to endpoint ..{endpoint}"):
-    #                         deploy_model_to_endpoint(model, endpoint)
-    #                     st.info(f'Successfully deployed latest model to endpoint : {endpoint}')
-    #     except Exception as e:
-    #         st.error(
-    #             e
-    #         )
 
 
     with st.form('File Input', clear_on_submit=True):
@@ -172,64 +151,12 @@ def app():
                         )
                         return
                 else:
-                    processed_test_data = process_data(data,drop_column ,target_column,fillna=fillna_selection)
+                    with st.spinner('Retriving transformation information from GCP. Please Wait..'):
+                        existing_buckets = retrive_buckets()
+                        transformation_columns = download_json_from_gcs(existing_buckets,
+                                                                        'customer_churn_dataset.json')
+                    processed_test_data = process_data(data,drop_column ,target_column,transformation_columns,fillna=fillna_selection)
                     with st.spinner("Predictions are underway"):
-                        # endpoint_info = get_endpoints(project_id)
-                        # instance = processed_test_data.astype(str).values.tolist()
-                        # instance = processed_test_data.to_dict(orient='records')
-                        # # instances = {key: value for key, value in processed_test_data.items()}
-                        # # instances = [instance]
-                        # endpoint = aiplatform.Endpoint(endpoint_info[0])
-                        # # instance = json_format.ParseDict(instance, Value())
-                        # instances = [instance]
-                        # prediction = endpoint.predict(instances=instances)
-                        # print(prediction)
-                        # client = aiplatform.gapic.PredictionServiceClient(
-                        #     client_options={'api_endpoint': 'us-central1-aiplatform.googleapis.com'}
-                        # )
-                        # instance = json_format.ParseDict(instance, Value())
-                        # instances = [instance]
-                        # endpoint = client.endpoint_path(
-                        #     project=project_id, location='us-central1', endpoint=endpoint_info[0]
-                        # )
-                        # try:
-                        #     response = client.predict(
-                        #         endpoint=endpoint_info[0], instances=instances
-                        #     )
-                        # except Exception as e:
-                        #     print(f"InvalidArgument error: {e}")
-                        #     # Print more details if available
-                        #     if hasattr(e, 'errors'):
-                        #         for error in e.errors:
-                        #             print(error)
-
-                        # prediction = endpoint.predict(instances=instances)
-                        # # print(prediction)
-                        # prediction_client = aiplatform_v1.PredictionServiceClient(
-                        #     client_options={'api_endpoint': 'us-central1-aiplatform.googleapis.com'}
-                        # )
-                        #
-                        # if endpoint_info:
-                        #     prediction_request = aiplatform_v1.PredictRequest(
-                        #         endpoint=endpoint_info[0],
-                        #         instances=instances[0]
-                        #     )
-                        # else:
-                        #     endpoint_info = create_endpoint('default', location_path)
-                        #     prediction_request = aiplatform_v1.PredictRequest(
-                        #         endpoint=endpoint_info,
-                        #         instances=instance
-                        #     )
-                        # predictions = prediction_client.predict(
-                        #     request=prediction_request
-                        # )
-                        # score_index = [v.index(max(v)) for values in predictions.predictions for k,v in values.items() if k=='scores']
-                        # classes = [v for values in predictions.predictions for k,v in values.items() if k=='classes']
-                        # predicted_classes = [classes[idx][values] for idx,values in enumerate(score_index)]
-                        # processed_test_data['Predicted_Churn'] = predicted_classes
-                        # processed_test_data['Predicted_Churn'] = processed_test_data['Predicted_Churn'].map({'0.0':'No Churn','1.0':"Churn"})
-                        # styled_df = processed_test_data.style.applymap(highlight_churn, subset=['Predicted_Churn'])
-                        # st.dataframe(styled_df)
                         endpoint_info = get_endpoints()
                         if endpoint_info:
                             instance = processed_test_data.astype(str).to_dict(orient='records')
@@ -239,10 +166,10 @@ def app():
                                            if k == 'scores']
                             classes = [v for values in predictions.predictions for k, v in values.items() if k == 'classes']
                             predicted_classes = [classes[idx][values] for idx, values in enumerate(score_index)]
-                            processed_test_data['Predicted_Churn'] = predicted_classes
-                            processed_test_data['Predicted_Churn'] = processed_test_data['Predicted_Churn'].map(
+                            data['Predicted_Churn'] = predicted_classes
+                            data['Predicted_Churn'] = data['Predicted_Churn'].map(
                                 {'0.0': 'No Churn', '1.0': "Churn"})
-                            styled_df = processed_test_data.style.applymap(highlight_churn, subset=['Predicted_Churn'])
+                            styled_df = data.style.applymap(highlight_churn, subset=['Predicted_Churn'])
                             st.dataframe(styled_df)
                         else:
                             st.error("Please deploy a model to make predictions")

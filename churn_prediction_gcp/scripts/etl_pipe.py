@@ -10,7 +10,7 @@ def calculate_mad(df):
   mad = np.mean(absolute_deviations)
   return mad
 
-def process_data(data,drop_columns,target_column,fillna=True,train=False):
+def process_data(data,drop_columns,target_column,transformation_columns,fillna=True,train=False):
     '''Returns processed data for model
 
     args: data , train(optional)
@@ -64,8 +64,14 @@ def process_data(data,drop_columns,target_column,fillna=True,train=False):
     else:
         data.dropna(inplace=True)
 
-    processed_data.columns = [str(column) for column in processed_data.columns]
+    processed_data.columns = [str(column).replace(' ','_') for column in processed_data.columns]
 
+    for column in transformation_columns:
+        if column not in processed_data.columns:
+            processed_data[column] = float(0)
+
+    #handling missing feature data if any
+    processed_data.fillna(float(0),inplace=True)
     if train:
         return processed_data
     else:

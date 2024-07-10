@@ -2,23 +2,36 @@ from google.cloud import aiplatform ,aiplatform_v1, storage
 from gcloud_connect import retrive_buckets,create_bucket_if_not_exists
 import streamlit as st
 import io
-def upload_to_bucket(bucket_name, file, destination_blob_name):
+import json
+def upload_to_bucket(bucket_name,
+                     file,column_file,
+                     destination_blob_name,
+                     column_display_name):
     """Uploads a file to the bucket."""
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(destination_blob_name)
+    json_blob = bucket.blob(column_display_name)
     csv_bytes = io.BytesIO()
     file.to_csv(csv_bytes, index=False)
     csv_bytes.seek(0)
+    columns_file = io.BytesIO()
+    columns_file.write(column_file)
+    columns_file.seek(0)
     # Check if the file already exists
-    if blob.exists():
-        st.warning(f"File {destination_blob_name} already exists in the bucket {bucket_name}.")
-        return
+    if blob.exists() and json_blob.exists() :
+        st.warning(f"File {destination_blob_name} and json {column_display_name} already exists in the bucket {bucket_name}.")
+        return destination_blob_name
 
     # Upload the file if it doesn't exist
-    blob.upload_from_file(csv_bytes, rewind=True)
+    if not blob.exists():
+        blob.upload_from_file(csv_bytes, rewind=True)
+    if not json_blob.exists():
+        json_blob.upload_from_file(columns_file, rewind=True)
+
     st.success(f"File uploaded to {bucket_name}/{destination_blob_name}.")
-    return destination_blob_name
+    st.success(f"File uploaded to {bucket_name}/{column_display_name}.")
+    return destination_blob_name , column_display_name
 
 
 def create_endpoint(endpoint_name,location_path):
@@ -40,22 +53,42 @@ def create_dataset_artifact(bucket_name , source_file ,file_name,display_name,pr
     returns: tabular dataframe
     '''
     bucket_names = retrive_buckets()
+    # upload column_transformation to gc bucket to retrive during testing
+    column_transformation = json.dumps(list(source_file.columns)).encode('utf-8')
     if bucket_name in bucket_names:
-        blob_name = upload_to_bucket(bucket_name, source_file, display_name)
+        blob_name = upload_to_bucket(bucket_name,
+                                     source_file,
+                                     column_transformation,
+                                     file_name,
+                                     display_name)
         data_path = f'gs://{bucket_name}/{blob_name}'
         cloud_dataset = aiplatform.TabularDataset.create(
             display_name=f"{display_name}",
             gcs_source=[data_path]
         )
     else:
-        create_bucket_if_not_exists(bucket_name,project_id)
-        blob_name = upload_to_bucket(bucket_name, source_file, display_name)
+        create_bucket_if_not_exists(bucket_name, project_id)
+        blob_name = upload_to_bucket(bucket_name, source_file, column_transformation, display_name, display_name)
         data_path = f'gs://{bucket_name}/{blob_name}'
         cloud_dataset = aiplatform.TabularDataset.create(
             display_name=f"{display_name}",
             gcs_source=[data_path]
         )
     return cloud_dataset
+
+def download_json_from_gcs(bucket_name, source_blob_name):
+    # Initialize the GCS client
+    client = storage.Client()
+    bucket = client.bucket(bucket_name[-1])
+    blob = bucket.blob(source_blob_name)
+
+    # Download the file contents as a string
+    file_contents = blob.download_as_string()
+
+    # Parse the JSON content
+    json_data = json.loads(file_contents)
+    return json_data
+
 
 def initialize_job(dataset,model_type):
     '''Returns training job

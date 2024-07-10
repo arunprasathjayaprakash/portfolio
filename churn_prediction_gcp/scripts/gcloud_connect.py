@@ -72,25 +72,12 @@ def get_credentials(storage_client,bucket_name,blob_name):
             credentials_data = json.loads(blob.download_as_text())
             return credentials_data
 
-#Module testing function
 def get_endpoints():
     '''Returns endpoint object for model in vertex ai
 
     args:None
     returns: endpoint object
     '''
-    # bucket = storage_client.bucket(bucket_name[-1])
-    # endpoint_id = []
-    # client = aiplatform_v1.EndpointServiceClient(
-    #     client_options={'api_endpoint': 'us-central1-aiplatform.googleapis.com'})
-    # parent = f'projects/{project_id}/locations/us-central1'
-    # request = aiplatform_v1.ListEndpointsRequest(parent=parent)
-    # page_result = client.list_endpoints(request=request)
-    # for result in page_result:
-    #     endpoint_id.append(result.name)
-    #
-    # return endpoint_id
-
     endpoint = aiplatform.Endpoint.list()
     if endpoint:
         endpoint_client = aiplatform.Endpoint(endpoint[0].name)
