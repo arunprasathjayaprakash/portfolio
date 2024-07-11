@@ -31,8 +31,7 @@ def upload_to_bucket(bucket_name,
 
     st.success(f"File uploaded to {bucket_name}/{destination_blob_name}.")
     st.success(f"File uploaded to {bucket_name}/{column_display_name}.")
-    return destination_blob_name , column_display_name
-
+    return destination_blob_name
 
 def create_endpoint(endpoint_name,location_path):
     endpoint_client = aiplatform_v1.EndpointServiceClient()
@@ -68,7 +67,7 @@ def create_dataset_artifact(bucket_name , source_file ,file_name,display_name,pr
         )
     else:
         create_bucket_if_not_exists(bucket_name, project_id)
-        blob_name = upload_to_bucket(bucket_name, source_file, column_transformation, display_name, display_name)
+        blob_name = upload_to_bucket(bucket_name, source_file, column_transformation, file_name, display_name)
         data_path = f'gs://{bucket_name}/{blob_name}'
         cloud_dataset = aiplatform.TabularDataset.create(
             display_name=f"{display_name}",

@@ -66,9 +66,10 @@ def process_data(data,drop_columns,target_column,transformation_columns,fillna=T
 
     processed_data.columns = [str(column).replace(' ','_') for column in processed_data.columns]
 
-    for column in transformation_columns:
-        if column not in processed_data.columns:
-            processed_data[column] = float(0)
+    if not train:
+        for column in transformation_columns:
+            if column not in processed_data.columns:
+                processed_data[column] = float(0)
 
     #handling missing feature data if any
     processed_data.fillna(float(0),inplace=True)

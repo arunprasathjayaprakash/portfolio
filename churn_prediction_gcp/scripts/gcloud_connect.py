@@ -97,7 +97,8 @@ def login_gcloud():
     with st.spinner("Retrieving Cloud Credentials"):
         storage_client = storage.Client()
         buckets = retrive_buckets()
-        credentials = get_credentials(storage_client, buckets)
+        #change the name of the blob based on your service account
+        credentials = get_credentials(storage_client, buckets,blob_name='portfolio_projects')
         endpoint = get_endpoints()
 
     return credentials , endpoint

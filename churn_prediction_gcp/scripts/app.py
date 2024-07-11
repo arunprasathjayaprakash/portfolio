@@ -127,10 +127,10 @@ def app():
                 if retrain_option and uploaded_file!= None:
                     try:
                         with st.spinner("Please Wait while we retrain the model...."):
-                            processed_data = process_data(data,drop_column ,target_column,
+                            processed_data = process_data(data,drop_column ,target_column, None,
                                                           fillna=fillna_selection,train=True)
                             dataset = create_dataset_artifact(bucket_name,processed_data,
-                                                              uploaded_file.name,uploaded_file.name,project_id)
+                                                              uploaded_file.name,uploaded_file.name.split('.')[0]+'.json',project_id)
                             job , dataset = initialize_job(dataset,'classification')
                             current_training_jobs , finished_pipelines = check_running_jobs(project_id,
                                                                                             'us-central1')
@@ -166,10 +166,11 @@ def app():
                                            if k == 'scores']
                             classes = [v for values in predictions.predictions for k, v in values.items() if k == 'classes']
                             predicted_classes = [classes[idx][values] for idx, values in enumerate(score_index)]
-                            data['Predicted_Churn'] = predicted_classes
-                            data['Predicted_Churn'] = data['Predicted_Churn'].map(
+                            display_data = data.drop('Churn',axis=1)
+                            display_data['Predicted_Churn'] = predicted_classes
+                            display_data['Predicted_Churn'] = display_data['Predicted_Churn'].map(
                                 {'0.0': 'No Churn', '1.0': "Churn"})
-                            styled_df = data.style.applymap(highlight_churn, subset=['Predicted_Churn'])
+                            styled_df = display_data.style.applymap(highlight_churn, subset=['Predicted_Churn'])
                             st.dataframe(styled_df)
                         else:
                             st.error("Please deploy a model to make predictions")
