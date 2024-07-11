@@ -72,9 +72,7 @@ resource "google_cloud_run_service" "churn-docker" {
 
 terraform {
   backend "gcs" {
-    bucket = "portfolio_buckets_2024"
-    credentials = "portfolio_project_key.json"
-    prefix = "terraform/state_v2"
+    '''Mention your bucket and state details, refer terraform documentation'''
   }
 }
 
