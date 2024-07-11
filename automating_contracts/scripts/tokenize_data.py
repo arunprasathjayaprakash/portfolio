@@ -58,7 +58,3 @@ def tokenize_predict(model_path):
                                               local_files_only=True)
     return tokenizer_pretrained , classifier_pretrained
 
-
-#
-# if __name__ == "__main__":
-#     tokenizer(0, 0, 0, 0, truncation=True, model_tokenizer='albert')

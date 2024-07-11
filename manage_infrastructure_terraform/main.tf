@@ -52,7 +52,7 @@ resource "google_cloud_run_service" "churn-docker" {
     spec {
       containers {
         image = "us-east1-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.default
-.repository_id}/churn_image:v0.2"
+.repository_id}/churn_image:v2.0"
         resources {
           limits = {
             memory = "256Mi"
@@ -72,9 +72,7 @@ resource "google_cloud_run_service" "churn-docker" {
 
 terraform {
   backend "gcs" {
-    bucket = "portfolio_buckets_2024"
-    credentials = "<Credentials JSON File>"
-    prefix = "terraform/state_v1"
+    '''Mention your bucket and state details, refer terraform documentation'''
   }
 }
 
