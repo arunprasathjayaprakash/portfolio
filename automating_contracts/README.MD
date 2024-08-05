@@ -66,7 +66,7 @@ automating_contracts/
 
 1. **Clone the repository**
     ```bash
-    git clone https://github.com/yourusername/automating_contracts.git
+    git clone https://github.com/arunprasathjayaprakash/portfolio/tree/7576a11f3be23fc5754de996733d63b682264cbe/automating_contracts
     cd automating_contracts
     ```
 
