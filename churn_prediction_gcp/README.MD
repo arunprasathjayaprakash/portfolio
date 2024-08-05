@@ -14,7 +14,7 @@ This repository contains a Streamlit application for predicting customer churn u
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/arunprasathjayaprakash/portfolio/tree/9527ed512fbb4062af9c5e77535af015f77bf9fe/churn_prediction_gcp
+    git clone https://github.com/arunprasathjayaprakash/portfolio/tree/e93f5854bda6b4dea1c8be6dd0477e3d745b1197/churn_prediction_gcp
     ```
 
 2. Install the required packages:
