@@ -1,10 +1,10 @@
 import torch
 import os
-from model import ConstructiveLearning , SimpleCNN
+from model import ConstructiveLearning,CLR_two_label , SimpleCNN
 from pre_processing import load_data
 from tqdm import tqdm
 
-def train_model(model,train_loader,n_epochs,optimizer,device="cpu"):
+def train_model(model,train_loader,n_epochs,optimizer,positive_labels,device="cpu"):
 
     for epoch in tqdm(range(n_epochs),total=n_epochs):
         #change the value to full if infrastructure supports full dataset
@@ -16,7 +16,9 @@ def train_model(model,train_loader,n_epochs,optimizer,device="cpu"):
             aug_m = model(image_aug)
 
             cl_loss = ConstructiveLearning(0.5,device).to(device)
-            loss = cl_loss.forward(org_m,aug_m)
+            torch_loss = CLR_two_label(0.5,device,positive_labels).to(device)
+            loss = torch_loss.forward(org_m)  # No augmented Image
+            # loss = cl_loss.forward(org_m,aug_m)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
@@ -34,5 +36,13 @@ if __name__ == "__main__":
     train_data,test_data = load_data()
     model = SimpleCNN().to(device)
     optimizer = torch.optim.Adam(model.parameters(),lr=0.01)
-    train_model(model,train_data,1,optimizer,device)
+    positive_labels = torch.tensor([
+        (0, 0), (0, 2), (0, 4),
+        (1, 4), (1, 6), (1, 1),
+        (2, 3),
+        (3, 7),
+        (4, 3),
+        (7, 6),
+        ])
+    train_model(model,train_data,1,optimizer,positive_labels,device)
 

@@ -21,6 +21,9 @@ def load_data(default=True):
     else:
         train_dataset = datasets.CIFAR10(root=os.path.join(os.path.dirname(os.getcwd()),'data'), train=True, download=True)
 
-    test_dataset = DataLoader(train_dataset, batch_size=64, shuffle=True)
+    test_dataset = datasets.CIFAR10(root=os.path.join(os.path.dirname(os.getcwd()), 'data'), train=False, download=True)
 
-    return train_dataset, test_dataset
+    train_data = DataLoader(train_dataset, batch_size=64, shuffle=True)
+    test_data = DataLoader(test_dataset, batch_size=64, shuffle=True)
+
+    return train_data, test_data
