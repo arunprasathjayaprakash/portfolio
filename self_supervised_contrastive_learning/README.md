@@ -5,8 +5,8 @@ This project demonstrates a contrastive learning approach inspired by the SimCLR
 ```markdown
 ## Project Structure
 
-- **data/**: Contains the CIFAR-10 dataset (downloaded automatically).
-- **scripts/**: Contains Python scripts for model training and evaluation.
+- data/: Contains the CIFAR-10 dataset (downloaded automatically).
+- scripts/: Contains Python scripts for model training and evaluation.
     - `train.py`: Main training script for contrastive learning.
     - `model.py`: Defines the feature extractor model (SimpleCNN) used for embedding images.
     - `pre-processing.py`: Contains the Transformation pipeline class.
