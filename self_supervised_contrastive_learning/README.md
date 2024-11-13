@@ -46,4 +46,3 @@ pip install torch torchvision
 
 - **Data Augmentation**:
   Each image in the dataset is randomly augmented to generate two different views, which act as positive pairs. These augmentations include random resized cropping, horizontal flipping, and color jitter.
-```
