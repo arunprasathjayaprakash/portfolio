@@ -41,4 +41,6 @@ def return_predictions():
 
 
 if __name__ == "__main___":
-    serve(app=app, listen='0.0.0.0:8000')
+    # Run the app in command terminal with Gunicorn command
+    # Sample command - #linux based !gunicorn --bind 0.0.0.0 echo:app 
+    serve(app=app, listen='0.0.0.0:8000') # Windows Gunicorn alternative for production grade load handling
