@@ -2,6 +2,7 @@ import os.path
 import mlflow
 import flask
 import ast
+import pandas as pd
 import google.auth
 from google.auth.transport.requests import Request
 from google.cloud import storage
@@ -29,27 +30,38 @@ def get_cloud_credentials():
         return storage_client
     except Exception as e:
         raise e
-def download_model(bucket_name,model_blob):
+def download_model(bucket_name,blob_name):
     try:
         storage_client = get_cloud_credentials()
         bucket = storage_client.get_bucket(bucket_name)
 
         os.makedirs(Model_tmp_path,exist_ok=True)
 
-        local_model_path = os.path.join(Model_tmp_path,'model.pkl')
-        blob = bucket.blob(model_blob)
-        blob.download_to_filename(local_model_path)
+        local_model_path = os.path.join([Model_tmp_path,bucket_name,mlflow])
+        list_blob = bucket.list_blobs(blob_name)
 
-        return local_model_path
+        for blob in list_blob:
+            local_file_path = os.path.join(Model_tmp_path, blob.name)
+
+            # Ensure the subdirectories exist before downloading
+            local_dir = os.path.dirname(local_file_path)
+            if not os.path.exists(local_dir):
+                os.makedirs(local_dir)
+
+            # Download the file from GCS to the local path
+            print(f"Downloading {blob.name} to {local_file_path}")
+            blob.download_to_filename(local_file_path)
+
+        return flask.jsonify('All files have been downloaded'), 200
     except Exception as e:
         raise e
 
-@app.before_first_request
+@app.before_request
 def load_model():
     global MODEL
     #Making default values for getting model data
     #For Production run use GCP secrets for getting environment values
-    model_path = download_model('model-pytorch', 'model-pytorch/model.pkl')
+    model_path = download_model('model-pytorch','mlflow')
     MODEL = mlflow.sklearn.load_model(model_path)
 @app.route('/predict', methods=['GET', 'POST'])
 def return_predictions():
@@ -63,12 +75,21 @@ def return_predictions():
     try:
         # sample request with data of {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0}
         # in raw format
-        params = flask.request.data
+        params = flask.request.get_json()
 
         if params:
-            params = params.decode('utf-8')
-            params = ast.literal_eval(params)
-            data_values = params.values()
+            # params = params.decode('utf-8')
+            # params = ast.literal_eval(params)
+            # data_values = params.values()
+
+            #Updating code for getting the data
+            new_data = {}
+
+            for k , v in params.items():
+                new_data[k] = v
+
+            data_values = pd.DataFrame.from_dict(new_data,
+                                      orient = "index").transpose()
 
             predictions = MODEL.predict_proba([list(data_values)])
 
@@ -90,7 +111,8 @@ if __name__ == "__main__":
     Create Repository using artifact registry if you need to have repository
     
     gcloud run deploy prediction-app \
-    --image us-docker.pkg.dev/YOUR_PROJECT_ID/prediction-app:latest
+    --image <location>.pkg.dev/YOUR_PROJECT_ID/prediction-app:latest
 
     '''
+    download_model('model-pytorch','mlflow')
     app.run(host="0.0.0.0", port=8080)
