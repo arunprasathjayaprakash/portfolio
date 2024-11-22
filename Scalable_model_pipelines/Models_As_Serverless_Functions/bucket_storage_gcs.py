@@ -1,7 +1,7 @@
 import os
 import google.auth
 from google.auth.transport.requests import Request
-from google.cloud.storage import Client, transfer_manager
+from google.cloud.storage import transfer_manager
 from google.cloud import storage
 
 def get_cloud_credentials():
@@ -36,7 +36,7 @@ def create_buckets(storage_name):
         except Exception as e:
             raise e
         
-def upload_to_storage(storage_name, source_directory="", workers=8):
+def upload_to_storage(storage_name, source_directory="",prefix="", workers=8):
     ''' Uploads files using Google transfer manager
 
     args: bucket-name , folder path , workers default to 8
@@ -49,7 +49,7 @@ def upload_to_storage(storage_name, source_directory="", workers=8):
     file_names = [file for file in os.listdir(source_directory)]
 
     results = transfer_manager.upload_many_from_filenames(
-        storage_bucket, file_names, source_directory=source_directory, max_workers=workers
+        storage_bucket, file_names, source_directory=source_directory,blob_name_prefix=prefix, max_workers=workers
     )
 
     for name, result in zip(file_names, results):
@@ -63,5 +63,6 @@ def upload_to_storage(storage_name, source_directory="", workers=8):
 
 if __name__ == "__main__":
     storage_name = "model-pytorch"
-    folder_path = os.path.join(os.path.dirname(os.getcwd()),'models/model_V1')
-    upload_to_storage(storage_name, source_directory=folder_path, workers=8)
+    folder_name = "mlflow"
+    folder_path = os.path.join(os.path.dirname(os.getcwd()),'models_v1')
+    upload_to_storage(storage_name, source_directory=folder_path,prefix='mlflow-1/', workers=8)

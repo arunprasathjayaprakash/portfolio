@@ -12,17 +12,16 @@ def call_cloudrun(url,default="Hello"):
     credentials.refresh(auth_request)
     id_token = credentials.id_token
 
-    payload = json.dumps({
-        "msg": "data"
-    })
+    payload = {"0": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0}
+
     headers = {
         'Content-Type': 'application/json',
         'Authorization': f'Bearer {id_token}'}
 
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, headers=headers, data=json.dumps(payload))
 
-    return response.json()
+    print(json.loads(response.content))
 
 if __name__ == "__main__":
-    url = "https://cloud-trigger-32726136683.us-central1.run.app"
+    url = "https://cloud-service-1-32726136683.us-central1.run.app/predict"
     call_cloudrun(url)
