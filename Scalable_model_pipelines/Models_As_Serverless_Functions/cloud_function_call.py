@@ -4,7 +4,7 @@ from google.auth.transport.requests import Request
 import requests
 import json
 
-def call_cloudrun(url,default="Hello"):
+def call_cloudrun(url,):
 
     #Run Your GCP setup for authentication and add Cloud Run permissions as needed
     credentials, _ = google.auth.default()
@@ -20,8 +20,8 @@ def call_cloudrun(url,default="Hello"):
 
     response = requests.request("POST", url, headers=headers, data=json.dumps(payload))
 
-    print(json.loads(response.content))
+    return json.loads(response.content)
 
 if __name__ == "__main__":
-    url = "https://cloud-service-1-32726136683.us-central1.run.app/predict"
+    url = "CLOUD FUNCTION DEPLOYED URL"
     call_cloudrun(url)
