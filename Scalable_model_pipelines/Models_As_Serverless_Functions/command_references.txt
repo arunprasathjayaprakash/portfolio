@@ -1,0 +1,27 @@
+To set kubeconfig, use the following command:
+- export KUBECONFIG=$PWD/kubeconfig
+
+Use the following command to establish connection with the cluster:
+- gcloud container clusters get-credentials $(terraform output --raw cluster_name) --project $(terraform output --raw project_id) --region $(terraform output --raw region)
+
+Use the following command for role binding using kubectl:
+- kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin
+
+Use the following command to find the number of nodes:
+- kubectl get nodes
+
+Use the following command to set admin roles before creating the artifact in gcp
+gcloud projects add-iam-policy-binding YOUR_PROJECT_ID --member serviceAccount:SERVICE_ACCOUNT_EMAIL --role roles/artifactregistry.admin
+
+Use the following command to push the image:
+docker push <you_region_name>-<type_of_image_to_be_hosted>/<project_id>/<repository_id>/<image_name>:<image_tag>
+
+Make An Authenticated end user request to access APP
+for /f "tokens=* usebackq" %i in (`gcloud auth print-identity-token`) do set IDENTITY_TOKEN=%i
+
+curl -H "Authorization: Bearer %IDENTITY_TOKEN%" [SERVICE_URL]
+
+To Make the APP Unauthenticated:
+
+Follow the steps to add princpal in your IAM roles
+https://cloud.google.com/run/docs/authenticating/public
