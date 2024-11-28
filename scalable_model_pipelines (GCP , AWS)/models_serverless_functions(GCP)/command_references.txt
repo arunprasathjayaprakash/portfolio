@@ -16,6 +16,8 @@ gcloud projects add-iam-policy-binding YOUR_PROJECT_ID --member serviceAccount:S
 Use the following command to push the image:
 docker push <you_region_name>-<type_of_image_to_be_hosted>/<project_id>/<repository_id>/<image_name>:<image_tag>
 
+gcloud auth configure-docker <location>.pkg.dev
+
 Make An Authenticated end user request to access APP
 for /f "tokens=* usebackq" %i in (`gcloud auth print-identity-token`) do set IDENTITY_TOKEN=%i
 
