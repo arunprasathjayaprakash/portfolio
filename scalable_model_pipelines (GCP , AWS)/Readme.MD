@@ -1,6 +1,6 @@
 # Project Structure
 
-This repository is organized as follows:
+This repository contains workflow implementations for data science workflows that should be used for production pipelines:
 
 ## Folder Structure
 
