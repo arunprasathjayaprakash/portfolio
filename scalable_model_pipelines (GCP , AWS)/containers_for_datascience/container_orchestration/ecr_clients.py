@@ -2,6 +2,11 @@ import os
 import boto3
 
 def get_clients(service_type,region=None,verbose=True):
+    '''Returns aws client with selected service , repositories
+
+    args: Service type (ECR, S3 , ECS etc.) , region
+    returns: client object , repo list
+    '''
 
     try:
         if region != None:
@@ -44,6 +49,11 @@ def get_clients(service_type,region=None,verbose=True):
         raise e
 
 def create_docker_image(image_tag,docker_config_path):
+    '''Creates docker image with specified image tag and docker
+
+    args: image tag , docker application path
+    returns: None
+    '''
 
     import docker
 
@@ -60,6 +70,11 @@ def create_docker_image(image_tag,docker_config_path):
 
 
 def push_docker_image(repo_url,image_tag):
+    '''Pushes image to cloud repository (AWS)
+
+    args: repository URL , Image tag
+    returns: None
+    '''
 
     import docker , base64
 
