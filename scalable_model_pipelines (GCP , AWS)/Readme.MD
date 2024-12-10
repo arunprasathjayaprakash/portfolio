@@ -35,6 +35,3 @@ Contributions are welcome! Please follow the guidelines below:
 - Fork the repository.
 - Create a feature branch.
 - Submit a pull request with detailed information about your changes.
-
-## License
-[Specify your project's license here]
