@@ -1,6 +1,8 @@
-# Anomaly Detection with Autoencoders
+# Anomaly Detection
 
-This repository contains a Jupyter notebook for performing anomaly detection using autoencoders. Autoencoders are neural networks used for unsupervised learning of efficient codings. This project demonstrates how to use autoencoders to detect anomalies in data.
+This repository contains a Jupyter notebook for performing anomaly detection for various image and tabular data.
+Detecting anomaly with XGboost for detecting network intrutions and other is an CNN based malware classfication that 
+detects malware in .exe files by converting it into Grayscale images. 
 
 ## Table of Contents
 
@@ -22,7 +24,8 @@ This repository contains a Jupyter notebook for performing anomaly detection usi
 1. Open the Jupyter notebook:
 
     ```bash
-    jupyter notebook anomaly_detection_with_auto_encoders.ipynb
+    jupyter notebook Image_CNN.ipynb
+    jupyter notebook XGBoost.ipynb
     ```
 
 2. Follow the instructions in the notebook to:
@@ -43,7 +46,9 @@ This repository contains a Jupyter notebook for performing anomaly detection usi
 ```
 anomaly_detection_with_auto_encoders/
 │                 
-├── anomaly_detection_with_auto_encoders.ipynb  # Jupyter notebook for anomaly detection
+├──scripts/ 
+│   - notebook Image_CNN.ipynb
+│   - notebook Xgboost.ipynb
 ├── requirements.txt         # Python dependencies
 ├── README.md                # Project README file
 ```
@@ -52,7 +57,7 @@ anomaly_detection_with_auto_encoders/
 
 ## Detailed Code Description
 
-### `anomaly_detection_with_auto_encoders.ipynb`
+### `Xgboost.ipynb  - Binary and multiclass`
 
 The main notebook file that demonstrates anomaly detection using autoencoders.
 
@@ -61,13 +66,30 @@ The main notebook file that demonstrates anomaly detection using autoencoders.
   - Preprocess the data (normalization, splitting into training and test sets).
 
 - **Model Definition**:
-  - Define the autoencoder architecture using Keras.
+  - Initialize Xgboost with Nvidia Rapids.
+  - Utilize DMatrix for faster higher accurate model
 
 - **Model Training**:
   - Compile and train the autoencoder model.
   - Save the trained model.
 
 - **Anomaly Detection**:
-  - Use the trained model to reconstruct the test data.
-  - Calculate the reconstruction error.
-  - Detect anomalies based on the reconstruction error.
+  - Detect the type of anomaly with Xgboost model.
+
+### `Image_CNN.ipynb - Detect and Classify malware in .exe files
+
+The main notebook file that demonstrates anomaly detection using autoencoders.
+
+- **Data Loading and Preprocessing**:
+  - Load the dataset.
+  - Preprocess the data (normalization, splitting into training and test sets).
+
+- **Model Definition**:
+  - Initialize CNN with Pytorch and simpler layers
+
+- **Model Training**:
+  - Compile and train the PyTorch model.
+  - Save the trained model.
+
+- **Anomaly Detection**:
+  - Detect the type of anomaly with Pytorch model.
