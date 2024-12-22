@@ -1,11 +1,12 @@
-FROM python:3
+FROM python:3.9.20-slim-bullseye
 
-WORKDIR  /scripts
+COPY . ./adverserial_robustness
 
-COPY requirements.txt ./
+WORKDIR /adverserial_robustness
+
 RUN pip install -r requirements.txt
+RUN apt-get update 
+RUN apt-get install -y libgl1
+RUN apt-get install -y libglib2.0-0
 
-COPY /scripts ./scripts
-EXPOSE  8080
-
-ENTRYPOINT ["streamlit", "run", "scripts/code_base.py", "--server.port=8080","--server.address=0.0.0.0"]
+ENTRYPOINT ["streamlit", "run", "scripts/code_base.py", "--server.port=8504","--server.address=0.0.0.0"]

@@ -201,7 +201,7 @@ def predict_and_save_results(trainer,model_name,test_dataset,test_dataframe):
   returns: dataframe object
   '''
   metrics , labels , predictions = trainer.predict(test_dataset)
-  test_dataframe[f'predicted_from_{model_name}'] = labels
+  test_dataframe[f'predicted_from_{model_name}'] = predictions
   return test_dataframe , metrics
 
 def infer_data(text,hypothesis,predicter_model="albert_model"):
@@ -243,7 +243,7 @@ def infer_data(text,hypothesis,predicter_model="albert_model"):
     data = pd.DataFrame()
     data['Text'] = [text]
     data['hypothesis'] = [hypothesis]
-    tokenizer, albert_classifier = tokenize_predict(os.path.join(os.getcwd(),f'models/{predicter_model}'))
+    tokenizer, albert_classifier = tokenize_predict(os.path.join(os.getcwd(),f'scripts/models/{predicter_model}'))
     encoded = tokenizer(data['Text'].to_list(),
                         data['hypothesis'].to_list(),
                         padding='max_length',
@@ -256,26 +256,14 @@ def infer_data(text,hypothesis,predicter_model="albert_model"):
     # inference_data.encodings["input_ids"] = inference_data.encodings["input_ids"].squeeze(0)
     # inference_data.encodings["attention_mask"] = inference_data.encodings["attention_mask"].squeeze(0)
 
-    predict_args = TrainingArguments(output_dir=os.path.join(os.getcwd(),'predictions/albert_model'),
+    predict_args = TrainingArguments(output_dir=os.path.join(os.getcwd(),f'scripts/predictions/{predicter_model}'),
                                      do_predict=True)
 
     trainer = Trainer(model=albert_classifier,
                       args=predict_args)
-    predictions = predict_and_save_results(trainer,'albert',inference_data,data)
+    predictions = predict_and_save_results(trainer,predicter_model,inference_data,data)
 
     if predicter_model == 'albert_model':
-        return {"predictions": label_mapper(predictions[0][f'predicted_from_albert'][0])}
+        return {"predictions": label_mapper(predictions[0][f'predicted_from_{predicter_model}'][0])}
     else:
-        return {"predictions": label_mapper(predictions[0][f'predicted_from_distill'][0])}
-
-
-'''
-Uncomment this to test script as individual modules
-'''
-if __name__ == "__main__":
-  data_path = r'C:\csulb_projects\portfolio_projects\hyper_application\automating_contracts\data\train.json'
-  valid_path = r'C:\csulb_projects\portfolio_projects\hyper_application\automating_contracts\data\dev.json'
-  test_path = r'C:\csulb_projects\portfolio_projects\hyper_application\automating_contracts\data\test.json'
-  misclass_threshold = 0.2
-  # train_and_predict(data_path,valid_path,test_path,misclass_threshold)
-  infer_data(test_path,'','')
+        return {"predictions": label_mapper(predictions[0][f'predicted_from_{predicter_model}'][0])}

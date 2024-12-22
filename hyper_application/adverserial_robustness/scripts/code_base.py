@@ -87,11 +87,26 @@ def visualize_examples(images, adv_images, labels):
 def main():
     st.title("Adversarial Robustness - GenAI")
 
+    st.info(
+        """
+        ### About This Project
+        This interactive application demonstrates how machine learning models can be tricked using adversarial attacks.
+        These attacks slightly modify input images in ways that are nearly invisible to the human eye but can mislead AI models into making incorrect predictions.
+        
+        Key Highlights:
+        - **Adversarial Examples**: Images that look normal to humans but cause the AI model to make errors.
+        - **Model Vulnerability**: Shows how robust (or not) AI models are against such subtle manipulations.
+        - **Visualization**: See original and adversarial examples side by side to understand the impact of attacks.
+        
+        This app helps researchers and enthusiasts explore the importance of building robust AI systems that can withstand these types of attacks.
+        """
+    )
+
     with st.form("Input" , clear_on_submit=True):
         # Dataset Selection
         dataset_name = st.selectbox("Select Dataset", ["CIFAR10"])
 
-        model_path = st.file_uploader("Upload your model (PyTorch .pth)", type=["pth"])
+        model_path = st.file_uploader("Upload your model (PyTorch .pth) (Press Submit if you dont have a model)", type=["pth"])
 
 
         batch_size = st.slider("Batch Size", min_value=1, max_value=128, value=64)

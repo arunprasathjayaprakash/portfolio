@@ -1,0 +1,4 @@
+opencv-python==4.9.0.80
+streamlit==1.32.2
+tqdm==4.66.2
+ultralytics==8.1.41
