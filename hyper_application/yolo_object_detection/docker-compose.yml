@@ -1,0 +1,9 @@
+services:
+  yolo_object_detection:
+    build: .
+    image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:3.0
+    ports:
+      - "8505:8505"
+    environment:
+      - STREAMLIT_SERVER_PORT=8505
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0  
