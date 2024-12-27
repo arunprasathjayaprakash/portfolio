@@ -15,7 +15,7 @@ This repository contains a Streamlit application for object detection in videos 
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/arunprasathjayaprakash/portfolio/tree/d7ca243804b3e02039a654fbaa92784a10816adf/yolo_object_detection
+    git clone https://github.com/arunprasathjayaprakash/portfolio/tree/99ccb93cc64a1ac9a67a153cc1ec0fec5916279b/yolo_object_detection
     ```
 
 2. Install the required packages:
