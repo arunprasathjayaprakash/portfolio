@@ -1,6 +1,6 @@
 # Projects Overview
 
-This repository contains several projects organized into directories. Below is an overview of each folder and its purpose:
+This repository contains several projects organized into directories. Each project has its own docker file for containerization and the containers are deployed with Google kubernetes Service  using GKE deployment script. 
 
 ## 1. `adversarial_robustness`
 This folder contains projects and code related to evaluating and improving the robustness of machine learning models against adversarial attacks.
@@ -12,7 +12,7 @@ This folder contains projects and code related to evaluating and improving the r
 
 ---
 
-## 2. `anomaly_detection`
+## 2. `anomaly_detection` (In development)
 This folder includes projects on identifying anomalies in datasets using advanced machine learning and deep learning techniques.
 
 ### Key Features:
@@ -63,6 +63,6 @@ This folder contains YOLO-based object detection projects for real-time detectio
 ---
 
 ## How to Use
-1. Clone this repository:
+1. Clone this repository and run through the code with docker-compose:
    ```bash
    git clone https://github.com/arunprasathjayaprakash/portfolio.git
