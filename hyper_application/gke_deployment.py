@@ -5,7 +5,7 @@ import subprocess
 
 # Set Google Application Credentials
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = \
-    "C:\csulb_projects\portfolio_projects\hyper_application\manifest-glyph-441000-g2-323b2aaca980.json"
+    "<Path to credential file>"
 
 def create_gke_cluster(project_id, region, cluster_name):
     """
@@ -232,7 +232,7 @@ def update_deployemnt(image,
     print(f"Deployment '{DEPLOYMENT_NAME}' updated successfully.")
 
 if __name__ == "__main__":
-    IMAGE_URL = "us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:1.0"
+    IMAGE_URL = "us-central1-docker.pkg.dev/<project_name>/docker-repo/yolo_object_detection:1.0"
     DEPLOYMENT_NAME = "portfolio"
     SERVICE_NAME = "portfolio"
     PORT = 85
