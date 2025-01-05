@@ -1,15 +1,16 @@
 def streamlit_app():
     import streamlit as st
     from train_and_analyze import infer_data
+    import json
 
     # Title and Description
-    st.title("Contract Automation: Inference Module")
-    st.write("Predict outcomes for contracts using AI models like Albert and DistilBERT.")
+    st.title("Contract Automation Using BERT ")
+    st.write("Predict outcomes for contracts using AI models like Albert and DistilBERT. (Transformer models from Hugging face)")
 
     st.info("""
         ### About This Project
-        This application helps you analyze contracts using advanced AI models like **Albert** and **DistilBERT**. 
-        With just a few clicks, you can test hypotheses about your contract text and get AI-powered predictions.
+        This application helps you analyze  legal contracts using advanced AI models like **Albert** and **DistilBERT**. 
+        With just a few clicks, you can test hypotheses about your contract text and get AI-powered predictions saving human time and efforts.
 
         **Key Features**:
         - **Contract Analysis**: Easily evaluate contract clauses and predict outcomes using AI.
@@ -24,12 +25,22 @@ def streamlit_app():
 
         **Who Is It For?**
         Legal professionals, contract managers, and businesses looking to automate contract reviews.
+            
+
+            ** Run Submit to see the models preidctions for the sample information**    
         """)
 
+    import os
+
+    with open(os.path.join(os.getcwd(),'scripts/sample_values.json'),'r') as file:
+        example_value = json.load(file)
+    
     # Input Section
     st.header("Input Contract Details")
-    contract_text = st.text_area("Enter Contract Text", help="Paste or type the contract text.")
-    hypothesis = st.text_area("Enter Hypothesis", help="What you want to test against the contract.")
+    contract_text = st.text_area("Enter Contract Text", help="Paste or type the contract text.",
+                                 value=example_value['value'])
+    hypothesis = st.text_area("Enter Hypothesis", help="What you want to test against the contract.",
+                              value=example_value['hypothesis'])
     model = st.selectbox("Select Model", ["Albert", "DistilBERT"], help="Choose the AI model for prediction.")
     predict_button = st.button("Run Prediction")
 

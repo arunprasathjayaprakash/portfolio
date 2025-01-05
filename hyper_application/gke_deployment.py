@@ -5,7 +5,7 @@ import subprocess
 
 # Set Google Application Credentials
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = \
-    "<Path to credential file>"
+    "C:\csulb_projects\portfolio_projects\hyper_application\manifest-glyph-441000-g2-323b2aaca980.json"
 
 def create_gke_cluster(project_id, region, cluster_name):
     """

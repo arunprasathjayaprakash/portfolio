@@ -1,5 +1,5 @@
 {
-  "model_path": "model",
+  "model_path": "models/yolov8n.pt",
   "input_path": "input_data",
   "output_path": "output"
 }
