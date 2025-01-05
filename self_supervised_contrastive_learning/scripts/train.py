@@ -8,6 +8,8 @@ def train_model(model,train_loader,n_epochs,optimizer,positive_labels,device="cp
 
     for epoch in tqdm(range(n_epochs),total=n_epochs):
         #change the value to full if infrastructure supports full dataset
+
+        total_loss = []
         for images,_ in tqdm(train_loader,total=len(train_loader)):
             image_org = images.to(device)
             image_aug = torch.flip(images,[1]).to(device)
@@ -17,15 +19,24 @@ def train_model(model,train_loader,n_epochs,optimizer,positive_labels,device="cp
 
             cl_loss = ConstructiveLearning(0.5,device).to(device)
             torch_loss = CLR_two_label(0.5,device,positive_labels).to(device)
-            loss = torch_loss.forward(org_m)  # No augmented Image
+            loss = cl_loss.forward(org_m,aug_m)
+            # total_loss.append(loss_value)# No augmented Image
             # loss = cl_loss.forward(org_m,aug_m)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
         print(f'{loss}')
 
-    torch.onnx.export(model,torch.randn(3,32,32).to(device), os.path.join(os.path.dirname(os.getcwd()),
-                                                                             "models/model.onnx"))
+    torch.onnx.export(
+        model,
+        torch.randn(1, 3, 32, 32).to(device),  # Ensure input size matches the expected shape
+        os.path.join(os.path.dirname(os.getcwd()),"models/model_1.onnx"),
+        input_names=["input"],
+        output_names=["output"],
+        dynamic_axes={"input": {0: "batch_size"}, "output": {0: "batch_size"}},
+        opset_version=12  # Specify a compatible ONNX opset version
+    )
+
 
 if __name__ == "__main__":
     #testing
