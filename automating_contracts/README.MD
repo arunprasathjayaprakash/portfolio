@@ -5,7 +5,7 @@
 
 Automating contract review involves analyzing legal documents to ensure the accuracy and clarity of legal standards. Natural language inference (NLI) techniques utilize artificial intelligence to analyze the relationships between different pieces of text. The ContractNLI dataset provides a collection of contracts and corresponding hypotheses. The models are trained on this dataset, with the goal of determining whether each hypothesis is entailed by, contradicts, or is not mentioned in the contract.
 
-## Tranformer Models Used
+## Transformer Models Used
 
 ### ALBERT (A Lite BERT)
 
@@ -66,7 +66,7 @@ automating_contracts/
 
 1. **Clone the repository**
     ```bash
-    git clone https://github.com/yourusername/automating_contracts.git
+    git clone https://github.com/arunprasathjayaprakash/portfolio/tree/7576a11f3be23fc5754de996733d63b682264cbe/automating_contracts
     cd automating_contracts
     ```
 

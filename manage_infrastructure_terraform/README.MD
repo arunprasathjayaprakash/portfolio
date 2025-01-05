@@ -61,7 +61,7 @@ manage_infrastructure_terraform/
 ## Setup Instructions
 1. **Clone the Repository**
     ```sh
-    git clone <repository-url>
+    git clone https://github.com/arunprasathjayaprakash/portfolio/tree/b579b694fa86b5902fdcefb94dffc8b3eca91316/manage_infrastructure_terraform
     cd manage_infrastructure_terraform
     ```
 

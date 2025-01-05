@@ -4,6 +4,7 @@ import streamlit as st
 import os
 import json
 from google.protobuf.json_format import MessageToDict
+
 def check_running_jobs(project_id, region):
     """Check if there are any running training jobs in the specified project and region."""
     finished_pipelines = []
@@ -58,6 +59,7 @@ def retrive_buckets():
         return bucket_names
     except:
         raise "Check gcloud intialization credentials"
+        
 def get_credentials(storage_client,bucket_name,blob_name):
     ''' Returns credential data from SSO default google authentication
 
@@ -85,6 +87,7 @@ def get_endpoints():
     else:
         st.error("No endpoint is present. Please train and deploy the model")
         return None
+        
 def login_gcloud():
     ''' Returns credentials and endpoints
 
