@@ -1,7 +1,7 @@
 import json
 import pandas as pd
 
-def load_data(data_path,req_count):
+def load_data(data_path,req_count=20):
     '''Returns dataframe with data converted from json path
 
     args: datapath , count (number of samples for dataset)
