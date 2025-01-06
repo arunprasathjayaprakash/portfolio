@@ -10,6 +10,7 @@ from stats_dt import statistics , remove_high_correlation
 import visual
 from train import train_and_infer
 
+#static path for serving data will be updated to GCP bigquery
 DATA_PATH = os.path.join(os.path.dirname(os.getcwd()), 'anomaly_detection/data/kddcup.data.corrected')
 
 col_names = [
@@ -74,44 +75,6 @@ def main():
         with st.spinner("Training the model..."):
             report, model = train_and_infer(data)
             st.success("Model trained successfully!")
-
-            st.info("""
-            ### Classification Report Summary
-
-            #### Metrics Explained:
-            - **Precision**: Proportion of correctly predicted instances for a class among all instances predicted as that class.
-            - **Recall**: Proportion of correctly predicted instances for a class among all actual instances of that class.
-            - **F1-Score**: Harmonic mean of precision and recall, providing a balanced measure.
-            - **Support**: Number of true instances for each class in the dataset.
-
-            #### Key Observations:
-            1. **Strong Performance for Major Classes**:
-            - The model performs exceptionally well for major attack types:
-                - `neptune.` (F1-score: 0.99997)
-                - `smurf.` (F1-score: 0.99999)
-                - `normal.` (F1-score: 0.99964)
-            - High support for these classes indicates their dominance in the dataset.
-
-            2. **Poor Performance for Minor Classes**:
-            - Some classes, like `ftp_write.`, `imap.`, `loadmodule.`, `perl.`, and `warezmaster.`, show zero precision, recall, and F1-scores.
-            - Low support (e.g., 1–4 instances) highlights the challenges of handling class imbalance.
-
-            3. **Macro and Weighted Averages**:
-            - **Macro Average**: Moderate scores due to performance disparity:
-                - Precision: 0.652, Recall: 0.618, F1-score: 0.628.
-            - **Weighted Average**: Near-perfect scores due to dominance of major classes:
-                - Precision: 0.9998, Recall: 0.9998, F1-score: 0.9998.
-
-            4. **Overall Accuracy**: 
-            - Achieved an impressive **99.98%**, indicating strong prediction capability for majority classes.
-
-            #### Implications:
-            - The model is highly effective for frequent attack types but struggles with rare ones.
-            - Addressing class imbalance using techniques like oversampling, undersampling, or specialized loss functions could improve performance on rare classes.
-
-            This report highlights the importance of evaluating models beyond accuracy to ensure robust anomaly detection across all attack types.
-            """)
-            st.write("Classification Report:")
             st.json(report)
 
             st.write("Feature Importances:")
