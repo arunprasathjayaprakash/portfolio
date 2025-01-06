@@ -1,9 +1,13 @@
 def streamlit_app():
+    """Runs and hosts automating contracts application
+
+    args: None
+    return: None
+    """
     import streamlit as st
     from train_and_analyze import infer_data
     import json
 
-    # Title and Description
     st.title("Contract Automation Using BERT ")
     st.write("Predict outcomes for contracts using AI models like Albert and DistilBERT. (Transformer models from Hugging face)")
 
@@ -35,7 +39,6 @@ def streamlit_app():
     with open(os.path.join(os.getcwd(),'scripts/sample_values.json'),'r') as file:
         example_value = json.load(file)
     
-    # Input Section
     st.header("Input Contract Details")
     contract_text = st.text_area("Enter Contract Text", help="Paste or type the contract text.",
                                  value=example_value['value'])
@@ -44,7 +47,7 @@ def streamlit_app():
     model = st.selectbox("Select Model", ["Albert", "DistilBERT"], help="Choose the AI model for prediction.")
     predict_button = st.button("Run Prediction")
 
-    # Output Section
+ 
     if predict_button:
         if contract_text.strip() and hypothesis.strip():
             with st.spinner("Running inference..."):
@@ -68,15 +71,6 @@ def streamlit_app():
         st.write("Here you can inspect technical details of the model's predictions.")
         # Placeholder for tokenized inputs or attention maps (optional)
         st.write("Tokenized Inputs: Coming Soon!")
-
-    # # Download Results
-    # st.download_button(
-    #     label="Download Predictions",
-    #     data=predictions,
-    #     file_name="predictions.csv",
-    #     mime="text/csv",
-    # )
-
 
 if __name__ == "__main__":
     streamlit_app()

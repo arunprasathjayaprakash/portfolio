@@ -2,7 +2,9 @@
 
 This repository contains a Jupyter notebook for performing anomaly detection for various image and tabular data.
 Detecting anomaly with XGboost for detecting network intrutions and other is an CNN based malware classfication that 
-detects malware in .exe files by converting it into Grayscale images. 
+detects malware in .exe files by converting it into Grayscale images.
+
+Note: Refer .ipynb files for implmentation and conceptuall understanding. Run scripts for streamlit application which follows software development standards
 
 ## Table of Contents
 

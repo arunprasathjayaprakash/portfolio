@@ -22,7 +22,11 @@ def load_model(model_path,pre_trained=False):
         return model
 
 def get_dataset(dataset_name, batch_size=64):
-    """Load the specified dataset."""
+    """Loads and returns the dataloader object
+    
+    args: dataset name , batch size
+    return: dataloader object
+    """
     transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize((0.5,), (0.5,))
@@ -44,7 +48,11 @@ def get_dataset(dataset_name, batch_size=64):
     return dataloader
 
 def generate_adversarial_examples(model, dataloader, attack_type, epsilon):
-    """Generate adversarial examples for the dataset."""
+    """Generate adversarial examples for the dataset.
+    
+    args: model object, dataloader object , attack type (FGSM, PGD) , epsillon (attack strength)
+    returns: adversarial examples and lables
+    """
     attack = None
     if attack_type == "FGSM":
         attack = FGSM(model, eps=epsilon)
@@ -66,7 +74,11 @@ def generate_adversarial_examples(model, dataloader, attack_type, epsilon):
     return torch.cat(adv_examples), torch.cat(adv_labels)
 
 def visualize_examples(images, adv_images, labels):
-    """Visualize original and adversarial examples."""
+    """Visualize original and adversarial examples.
+    
+    args: images, adversarial images, lables
+    return: image object for streamlit
+    """
     fig, axes = plt.subplots(2, 5, figsize=(10, 5))
     explanations = []
 
@@ -85,6 +97,12 @@ def visualize_examples(images, adv_images, labels):
 
 # Streamlit UI
 def main():
+    '''Runs streamlit application
+
+
+    args: None
+    return: None
+    '''
     st.title("Adversarial Robustness - GenAI")
 
     st.info(

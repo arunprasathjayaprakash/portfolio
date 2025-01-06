@@ -1,15 +1,16 @@
 import numpy as np
 import os
-
 import pandas as pd
 from sklearn.metrics import  accuracy_score , f1_score , recall_score , precision_score
 from transformers import TrainingArguments
 from transformers import Trainer
-from transformers import AutoTokenizer , AutoModelForSequenceClassification
+from transformers import AutoTokenizer 
 from ingest_data import load_data
 from tokenize_data import tokenizer_train , tokenize_predict
 from tokenize_data import ContractNLIDataset
 from datasets import Dataset
+
+
 def compute_metrics(p):
   '''Returns metrics score for predicted data
 
@@ -28,6 +29,12 @@ def compute_metrics(p):
 
 
 def label_mapper(prediction):
+    """Returns Prediction label for user understanding for each prediction
+
+    args: prediction from model
+    return: prediction label's corresponding mapping with explanation
+    
+    """
     if prediction == 0:
         return ("NotMentioned:"
                 "A particular issue, fact, or argument is not addressed or referenced in the text, contract, law, or"
@@ -56,6 +63,8 @@ def label_mapper(prediction):
                 "A lease agreement states, 'The tenant is responsible for all utility payments,' but later states,"
                 "'The landlord will cover the water bill.'"
                 "These clauses are in contradiction, and the court or parties would need to clarify the intent to resolve the conflict.")
+    
+
 def train_and_predict(data_path,
                       valid_path,
                       test_path,
@@ -194,13 +203,15 @@ def train_and_predict(data_path,
 
   return training_report
 
+
+
 def predict_and_save_results(trainer,model_name,test_dataset,test_dataframe):
   '''Returns Test dataframe with predicted labels
 
   args: trainer , model name , prediction dataset , prediction dataframe object
   returns: dataframe object
   '''
-  metrics , labels , predictions = trainer.predict(test_dataset)
+  metrics , _ , predictions = trainer.predict(test_dataset)
   test_dataframe[f'predicted_from_{model_name}'] = predictions
   return test_dataframe , metrics
 
@@ -211,35 +222,6 @@ def infer_data(text,hypothesis,predicter_model="albert_model"):
     args:data path , predictor model name
     returns: predictions with the selected model
     '''
-    # data = load_data(data_path,30)
-    #
-    # #Handling label column for internal testing
-    # if 'target' in data:
-    #     data.drop('target',axis=1)
-    #
-    # if predicter_model == 'albert':
-    #   tokenizer , classifier = tokenize_predict(os.path.join(os.getcwd(),'models/albert_model'))
-    #   training_args = TrainingArguments(
-    #     output_dir=os.path.join(os.getcwd(), 'predictions/albert_model'),
-    #     do_predict=True
-    #   )
-    # else:
-    #   tokenizer, classifier = tokenize_predict(os.path.join(os.getcwd(), 'models/distill_model'))
-    #   training_args = TrainingArguments(
-    #     output_dir=os.path.join(os.getcwd(),'predictions/distill_model'),
-    #     do_predict=True
-    #   )
-    #
-    # predictor = Trainer(model=classifier,args=training_args)
-    #
-    # encoded = tokenizer(text=data['Text'].to_list(), text_pair=data['hypothesis'].to_list())
-    # # dataset_enc = Dataset.from_dict(encoded)
-    # infer_dataset = ContractNLIDataset(encoded)
-    # predictions = predictor.predict(infer_dataset)
-    # return predictions
-
-    "Inference pipeline"
-    # data = load_data(data_path,1)
     data = pd.DataFrame()
     data['Text'] = [text]
     data['hypothesis'] = [hypothesis]
@@ -252,9 +234,6 @@ def infer_data(text,hypothesis,predicter_model="albert_model"):
 
     inference_data = ContractNLIDataset(encoded,
                      [0]*len(encoded.encodings))
-
-    # inference_data.encodings["input_ids"] = inference_data.encodings["input_ids"].squeeze(0)
-    # inference_data.encodings["attention_mask"] = inference_data.encodings["attention_mask"].squeeze(0)
 
     predict_args = TrainingArguments(output_dir=os.path.join(os.getcwd(),f'scripts/predictions/{predicter_model}'),
                                      do_predict=True)

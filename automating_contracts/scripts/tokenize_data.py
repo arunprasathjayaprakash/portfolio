@@ -1,6 +1,7 @@
 import torch
 from transformers import AutoTokenizer , AutoModelForSequenceClassification
 
+#Creating dataset
 class ContractNLIDataset(torch.utils.data.Dataset):
     def __init__(self,encodings,labels=[]):
         self.encodings = encodings
@@ -50,7 +51,13 @@ def tokenizer_train(text, hypothesis_data, max_length=256, truncation=True, mode
                               truncation=truncation)
     return encoded_input , classifier
 
+
 def tokenize_predict(model_path):
+    """Returns tokenizer and classifier for inference
+
+    args: pretrained model path
+    return: loaded classifier and tokenizer
+    """
 
     classifier_pretrained = AutoModelForSequenceClassification.from_pretrained(model_path,
                                                                            local_files_only=True)
