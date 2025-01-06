@@ -1,14 +1,15 @@
+#Testing script - orginal script has been changed to yolo_object_detection/scripts
 def hyperapp_ui():
     import streamlit as st
 
     # App configurations
-    apps = [
-        {"name": "Adverserial Robustness", "url": "http://localhost:8501"},
-        {"name": "Automating Contracts", "url": "http://localhost:8502"},
-        {"name": "Churn Prediction", "url": "http://localhost:8503"},
-        {"name": "Simple Contarstive Learning", "url": "http://localhost:8504"},
-        {"name": "Object Detection", "url": "http://localhost:8505"},
-    ]
+    # apps = [
+    #     {"name": "Adverserial Robustness", "url": "http://localhost:8501"},
+    #     {"name": "Automating Contracts", "url": "http://localhost:8502"},
+    #     {"name": "Churn Prediction", "url": "http://localhost:8503"},
+    #     {"name": "Simple Contarstive Learning", "url": "http://localhost:8504"},
+    #     {"name": "Object Detection", "url": "http://localhost:8505"},
+    # ]
 
     st.set_page_config(page_title="Master Streamlit App", layout="wide")
 
