@@ -7,6 +7,10 @@ from ultralytics import YOLO
 
 # Streamlit App
 def main():
+
+    #set tab name
+    st.set_page_config(page_title="Portfolio Demo")
+
     # Set up sidebar navigation
     st.sidebar.title("Navigation")
     selected_project = st.sidebar.radio("Select a Project", ["Portfolio", "YOLO Object Detection",
@@ -25,8 +29,8 @@ def main():
 
         st.markdown(
             """
-            **GitHub Repository**  
-            Check out my entire project collection on [GitHub](https://github.com/arunprasathjayaprakash/portfolio.git).
+            **GitHub Repository / Portfolio website**  
+            Check out my entire project collection on [GitHub](https://github.com/arunprasathjayaprakash/portfolio.git), [Portfolio](https://arun826jp.wixsite.com/my-site).
             """,
             unsafe_allow_html=True
         )
@@ -195,8 +199,9 @@ def main():
             raise e
     
     elif selected_project == 'Anomaly Detection with XGBoost':
-        from app import main as st_main
-        st_main()
+        st.info(""" ** Application is Down for bug fixes. Head back to portfolio to explore more projects!** """)
+        # from app import main as st_main
+        # st_main()
         
 
 if __name__ == "__main__":
