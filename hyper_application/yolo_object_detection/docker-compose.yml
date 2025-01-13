@@ -1,7 +1,7 @@
 services:
   yolo_object_detection:
     build: .
-    image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:8.0
+    image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:11.0
     ports:
       - "8505:8505"
     volumes:

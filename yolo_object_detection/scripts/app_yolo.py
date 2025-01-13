@@ -25,8 +25,8 @@ def main():
 
         st.markdown(
             """
-            **GitHub Repository**  
-            Check out my entire project collection on [GitHub](https://github.com/arunprasathjayaprakash/portfolio.git).
+            **GitHub Repository / Portfolio**  
+            Check out my entire project collection on [GitHub](https://github.com/arunprasathjayaprakash/portfolio.git),[Portfolio](https://arun826jp.wixsite.com/my-site).
             """,
             unsafe_allow_html=True
         )

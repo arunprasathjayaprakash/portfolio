@@ -1,0 +1,2439 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2024-12-22T21:25:22Z"
+    generateName: hyper-application-adverserial-robustness-6cf9658c78-
+    labels:
+      app: hyper-application-adverserial-robustness
+      pod-template-hash: 6cf9658c78
+    name: hyper-application-adverserial-robustness-6cf9658c78-nx4gl
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: hyper-application-adverserial-robustness-6cf9658c78
+      uid: 594fa360-4a22-4131-80c9-5d800abbf70e
+    resourceVersion: "812363"
+    uid: 88815e63-8a50-4224-81fa-65757400ef04
+  spec:
+    containers:
+    - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/adverserial_robustness:2.0
+      imagePullPolicy: IfNotPresent
+      name: hyper-application-adverserial-robustness
+      ports:
+      - containerPort: 83
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-jg9nn
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: gke-hyper-application-default-pool-9c436711-9vnd
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-jg9nn
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-22T21:29:37Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-22T21:25:22Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-22T21:29:37Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-22T21:29:37Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-22T21:25:22Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://d96d1dc4e877061df27a0bf05f8b659f8db0f52023772294878fd55201138cd8
+      image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/adverserial_robustness:2.0
+      imageID: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/adverserial_robustness@sha256:9485b7ec0c205f23759ecfa6d97ac62306af6961dbd696231e45653d59b0659f
+      lastState: {}
+      name: hyper-application-adverserial-robustness
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-22T21:29:36Z"
+    hostIP: 10.128.0.60
+    hostIPs:
+    - ip: 10.128.0.60
+    phase: Running
+    podIP: 10.68.0.12
+    podIPs:
+    - ip: 10.68.0.12
+    qosClass: BestEffort
+    startTime: "2024-12-22T21:25:22Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2024-12-23T06:41:44Z"
+    generateName: hyper-application-automating-contracts-76f75cb656-
+    labels:
+      app: hyper-application-automating-contracts
+      pod-template-hash: 76f75cb656
+    name: hyper-application-automating-contracts-76f75cb656-7q5ff
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: hyper-application-automating-contracts-76f75cb656
+      uid: 13d5a4e3-415b-45c5-ae7b-dc9df60e3343
+    resourceVersion: "1168494"
+    uid: 08843480-bfa4-44ce-abbf-1afdd3592819
+  spec:
+    containers:
+    - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/automating_contracts:3.0
+      imagePullPolicy: IfNotPresent
+      name: hyper-application-automating-contracts
+      ports:
+      - containerPort: 82
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-rqgzr
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: gke-hyper-application-default-pool-9c436711-9vnd
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-rqgzr
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-23T06:47:18Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-23T06:41:45Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-23T06:47:18Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-23T06:47:18Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-23T06:41:45Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://123e3076f8d66b1b1373fd21057ba1c0899b3afcaf88855c1fbe18bfcdeb9318
+      image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/automating_contracts:3.0
+      imageID: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/automating_contracts@sha256:e2b7336546d55b220729a5f2fa7940cb48b5f55b9ed149f2c2fe78b95e213fd3
+      lastState: {}
+      name: hyper-application-automating-contracts
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-23T06:47:18Z"
+    hostIP: 10.128.0.60
+    hostIPs:
+    - ip: 10.128.0.60
+    phase: Running
+    podIP: 10.68.0.16
+    podIPs:
+    - ip: 10.68.0.16
+    qosClass: BestEffort
+    startTime: "2024-12-23T06:41:45Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2024-12-23T00:01:51Z"
+    generateName: hyper-application-self-supervised-7f6dbfb4db-
+    labels:
+      app: hyper-application-self-supervised
+      pod-template-hash: 7f6dbfb4db
+    name: hyper-application-self-supervised-7f6dbfb4db-vk48d
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: hyper-application-self-supervised-7f6dbfb4db
+      uid: 3d648898-e2f9-43be-8a10-a7b3621b44e5
+    resourceVersion: "913319"
+    uid: 81736b32-c9d0-4f5c-831e-86a4935330ca
+  spec:
+    containers:
+    - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/self_supervised:2.0
+      imagePullPolicy: IfNotPresent
+      name: hyper-application-self-supervised
+      ports:
+      - containerPort: 81
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-dnrdz
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: gke-hyper-application-default-pool-9c436711-9vnd
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-dnrdz
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-23T00:06:17Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-23T00:01:51Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-23T00:06:17Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-23T00:06:17Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-12-23T00:01:51Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://eb977ace8d35fe64d7fe49e3035f307aff747ce22446143fb3c73f894012a6d7
+      image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/self_supervised:2.0
+      imageID: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/self_supervised@sha256:6d630a5199b35a03ab94e1a1782c9bd131dcac1aa87ddb988c1be8c4995ee31c
+      lastState: {}
+      name: hyper-application-self-supervised
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-12-23T00:06:17Z"
+    hostIP: 10.128.0.60
+    hostIPs:
+    - ip: 10.128.0.60
+    phase: Running
+    podIP: 10.68.0.14
+    podIPs:
+    - ip: 10.68.0.14
+    qosClass: BestEffort
+    startTime: "2024-12-23T00:01:51Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2025-01-07T14:43:49-08:00"
+    creationTimestamp: "2025-01-07T22:45:42Z"
+    generateName: portfolio-76597b4c84-
+    labels:
+      app: portfolio
+      pod-template-hash: 76597b4c84
+    name: portfolio-76597b4c84-lhfwk
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: portfolio-76597b4c84
+      uid: c4f4df18-cec4-444e-98e0-51c66f823985
+    resourceVersion: "15654823"
+    uid: f1e9c9c5-9360-4bd7-85d8-c03649381918
+  spec:
+    containers:
+    - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:8.0
+      imagePullPolicy: IfNotPresent
+      name: portfolio
+      ports:
+      - containerPort: 85
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-jv4rq
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: gke-hyper-application-default-pool-9c436711-47lg
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-jv4rq
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T22:48:38Z"
+      message: 'The node was low on resource: memory. Threshold quantity: 100Mi, available:
+        372Ki. Container portfolio was using 1938040Ki, request is 0, has larger consumption
+        of memory. '
+      reason: TerminationByKubelet
+      status: "True"
+      type: DisruptionTarget
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T22:48:38Z"
+      status: "False"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T22:45:42Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T22:48:38Z"
+      reason: PodFailed
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T22:48:38Z"
+      reason: PodFailed
+      status: "False"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T22:45:42Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://875297900583686ac7e01df65cdfb09ecdd55b90297c381e8bac2dc601b6c85a
+      image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:8.0
+      imageID: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection@sha256:78f28372569ea20be677456d2cb5ad4d9ddb2221afd79a01e6ee773f4c5afae4
+      lastState: {}
+      name: portfolio
+      ready: false
+      restartCount: 0
+      started: false
+      state:
+        terminated:
+          containerID: containerd://875297900583686ac7e01df65cdfb09ecdd55b90297c381e8bac2dc601b6c85a
+          exitCode: 137
+          finishedAt: "2025-01-07T22:48:38Z"
+          reason: OOMKilled
+          startedAt: "2025-01-07T22:45:43Z"
+    hostIP: 10.128.0.61
+    hostIPs:
+    - ip: 10.128.0.61
+    message: 'The node was low on resource: memory. Threshold quantity: 100Mi, available:
+      372Ki. Container portfolio was using 1938040Ki, request is 0, has larger consumption
+      of memory. '
+    phase: Failed
+    podIP: 10.68.1.25
+    podIPs:
+    - ip: 10.68.1.25
+    qosClass: BestEffort
+    reason: Evicted
+    startTime: "2025-01-07T22:45:42Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2025-01-07T14:43:49-08:00"
+    creationTimestamp: "2025-01-07T23:08:54Z"
+    generateName: portfolio-77db684c54-
+    labels:
+      app: portfolio
+      pod-template-hash: 77db684c54
+    name: portfolio-77db684c54-kdp29
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: portfolio-77db684c54
+      uid: 0793ed7b-e741-43f3-9615-973ca5ef2765
+    resourceVersion: "15671167"
+    uid: e3ca5b71-9e8d-4913-8973-4ddb3516d0e2
+  spec:
+    containers:
+    - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:11.0
+      imagePullPolicy: IfNotPresent
+      name: portfolio
+      ports:
+      - containerPort: 85
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-7zwwd
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: gke-hyper-application-default-pool-9c436711-9vnd
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-7zwwd
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T23:13:57Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T23:08:54Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T23:13:57Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T23:13:57Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T23:08:54Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://8e420c8761c7b9c02214e4e863e5a627af7425f393bd134a7a4cfd75fc14d01a
+      image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:11.0
+      imageID: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection@sha256:a51389a5afc2e7f8d14f445c983a596ee4daa180a7c9fc80491819c44e91e3ce
+      lastState: {}
+      name: portfolio
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-01-07T23:13:57Z"
+    hostIP: 10.128.0.60
+    hostIPs:
+    - ip: 10.128.0.60
+    phase: Running
+    podIP: 10.68.0.27
+    podIPs:
+    - ip: 10.68.0.27
+    qosClass: BestEffort
+    startTime: "2025-01-07T23:08:54Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2025-01-04T00:03:59Z"
+    generateName: portfolio-7df67d77d8-
+    labels:
+      app: portfolio
+      pod-template-hash: 7df67d77d8
+    name: portfolio-7df67d77d8-hm6vf
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: portfolio-7df67d77d8
+      uid: 535cfe80-177c-47ad-8ee9-2cd371691fbd
+    resourceVersion: "15655836"
+    uid: 4da19451-37a3-4643-a0fd-4d3bb297a38e
+  spec:
+    containers:
+    - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:8.0
+      imagePullPolicy: IfNotPresent
+      name: portfolio
+      ports:
+      - containerPort: 85
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-x4pp2
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: gke-hyper-application-default-pool-9c436711-9vnd
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-x4pp2
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-04T00:34:32Z"
+      message: 'The node was low on resource: memory. Threshold quantity: 100Mi, available:
+        2444Ki. Container portfolio was using 960228Ki, request is 0, has larger consumption
+        of memory. '
+      reason: TerminationByKubelet
+      status: "True"
+      type: DisruptionTarget
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-04T00:34:32Z"
+      status: "False"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-04T00:04:01Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-04T00:34:32Z"
+      reason: PodFailed
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-04T00:34:32Z"
+      reason: PodFailed
+      status: "False"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-04T00:04:01Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:8.0
+      imageID: ""
+      lastState:
+        terminated:
+          exitCode: 137
+          finishedAt: null
+          message: The container could not be located when the pod was deleted.  The
+            container used to be Running
+          reason: ContainerStatusUnknown
+          startedAt: null
+      name: portfolio
+      ready: false
+      restartCount: 1
+      started: false
+      state:
+        terminated:
+          exitCode: 137
+          finishedAt: null
+          message: The container could not be located when the pod was terminated
+          reason: ContainerStatusUnknown
+          startedAt: null
+    hostIP: 10.128.0.60
+    hostIPs:
+    - ip: 10.128.0.60
+    message: 'The node was low on resource: memory. Threshold quantity: 100Mi, available:
+      2444Ki. Container portfolio was using 960228Ki, request is 0, has larger consumption
+      of memory. '
+    phase: Failed
+    qosClass: BestEffort
+    reason: Evicted
+    startTime: "2025-01-04T00:04:01Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2025-01-04T20:56:18Z"
+    generateName: portfolio-7df67d77d8-
+    labels:
+      app: portfolio
+      pod-template-hash: 7df67d77d8
+    name: portfolio-7df67d77d8-v5cfh
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: portfolio-7df67d77d8
+      uid: 535cfe80-177c-47ad-8ee9-2cd371691fbd
+    resourceVersion: "15655838"
+    uid: 6e068df1-c075-4fe1-b555-82e6ed55201a
+  spec:
+    containers:
+    - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:8.0
+      imagePullPolicy: IfNotPresent
+      name: portfolio
+      ports:
+      - containerPort: 85
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-9brzq
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: gke-hyper-application-default-pool-9c436711-9vnd
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-9brzq
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-04T21:07:01Z"
+      message: 'The node was low on resource: memory. Threshold quantity: 100Mi, available:
+        96896Ki. Container portfolio was using 304504Ki, request is 0, has larger
+        consumption of memory. '
+      reason: TerminationByKubelet
+      status: "True"
+      type: DisruptionTarget
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-04T21:07:01Z"
+      status: "False"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-04T20:56:19Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-04T21:07:01Z"
+      reason: PodFailed
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-04T21:07:01Z"
+      reason: PodFailed
+      status: "False"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-04T20:56:19Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://483b4be5857a5f632493663db59a8d6ac1bdeda430f29cb1b8a2ac96e48c9dbe
+      image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:8.0
+      imageID: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection@sha256:78f28372569ea20be677456d2cb5ad4d9ddb2221afd79a01e6ee773f4c5afae4
+      lastState: {}
+      name: portfolio
+      ready: false
+      restartCount: 0
+      started: false
+      state:
+        terminated:
+          containerID: containerd://483b4be5857a5f632493663db59a8d6ac1bdeda430f29cb1b8a2ac96e48c9dbe
+          exitCode: 137
+          finishedAt: "2025-01-04T21:07:01Z"
+          reason: Error
+          startedAt: "2025-01-04T20:56:20Z"
+    hostIP: 10.128.0.60
+    hostIPs:
+    - ip: 10.128.0.60
+    message: 'The node was low on resource: memory. Threshold quantity: 100Mi, available:
+      96896Ki. Container portfolio was using 304504Ki, request is 0, has larger consumption
+      of memory. '
+    phase: Failed
+    qosClass: BestEffort
+    reason: Evicted
+    startTime: "2025-01-04T20:56:19Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2025-01-07T14:43:49-08:00"
+    creationTimestamp: "2025-01-07T22:48:57Z"
+    generateName: portfolio-b75f59477-
+    labels:
+      app: portfolio
+      pod-template-hash: b75f59477
+    name: portfolio-b75f59477-lx8v4
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: portfolio-b75f59477
+      uid: 1ba6d54c-393a-483c-ba68-d933fccc5d03
+    resourceVersion: "15660712"
+    uid: 1b00f59e-68df-4efe-838a-4653c9230dd9
+  spec:
+    containers:
+    - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:7.0
+      imagePullPolicy: IfNotPresent
+      name: portfolio
+      ports:
+      - containerPort: 85
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-x2944
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: gke-hyper-application-default-pool-9c436711-9vnd
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-x2944
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T22:57:40Z"
+      message: 'The node was low on resource: memory. Threshold quantity: 100Mi, available:
+        1332Ki. '
+      reason: TerminationByKubelet
+      status: "True"
+      type: DisruptionTarget
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T22:57:40Z"
+      status: "False"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T22:48:57Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T22:57:40Z"
+      reason: PodFailed
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T22:57:40Z"
+      reason: PodFailed
+      status: "False"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-01-07T22:48:57Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:7.0
+      imageID: ""
+      lastState:
+        terminated:
+          exitCode: 137
+          finishedAt: null
+          message: The container could not be located when the pod was deleted.  The
+            container used to be Running
+          reason: ContainerStatusUnknown
+          startedAt: null
+      name: portfolio
+      ready: false
+      restartCount: 1
+      started: false
+      state:
+        terminated:
+          exitCode: 137
+          finishedAt: null
+          message: The container could not be located when the pod was terminated
+          reason: ContainerStatusUnknown
+          startedAt: null
+    hostIP: 10.128.0.60
+    hostIPs:
+    - ip: 10.128.0.60
+    message: 'The node was low on resource: memory. Threshold quantity: 100Mi, available:
+      1332Ki. '
+    phase: Failed
+    podIP: 10.68.0.26
+    podIPs:
+    - ip: 10.68.0.26
+    qosClass: BestEffort
+    reason: Evicted
+    startTime: "2025-01-07T22:48:57Z"
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      cloud.google.com/neg: '{"ingress":true}'
+    creationTimestamp: "2024-12-22T05:30:15Z"
+    finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+    name: hyper-application-adverserial-robustness
+    namespace: default
+    resourceVersion: "194606"
+    uid: 7f627ee2-52a5-4eb7-a355-8423011b4f85
+  spec:
+    allocateLoadBalancerNodePorts: true
+    clusterIP: 34.118.226.224
+    clusterIPs:
+    - 34.118.226.224
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 31524
+      port: 83
+      protocol: TCP
+      targetPort: 8504
+    selector:
+      app: hyper-application-adverserial-robustness
+    sessionAffinity: None
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 34.28.231.37
+        ipMode: VIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      cloud.google.com/neg: '{"ingress":true}'
+    creationTimestamp: "2024-12-22T04:09:24Z"
+    finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+    name: hyper-application-automating-contracts
+    namespace: default
+    resourceVersion: "142511"
+    uid: 79d35479-d4e2-4c67-8f7c-632d6675691c
+  spec:
+    allocateLoadBalancerNodePorts: true
+    clusterIP: 34.118.239.98
+    clusterIPs:
+    - 34.118.239.98
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 32557
+      port: 82
+      protocol: TCP
+      targetPort: 8503
+    selector:
+      app: hyper-application-automating-contracts
+    sessionAffinity: None
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 34.132.163.173
+        ipMode: VIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      cloud.google.com/neg: '{"ingress":true}'
+    creationTimestamp: "2024-12-22T00:48:11Z"
+    finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+    name: hyper-application-self-supervised
+    namespace: default
+    resourceVersion: "12843"
+    uid: 8075206f-7162-4f37-aefd-1b2550f7915a
+  spec:
+    allocateLoadBalancerNodePorts: true
+    clusterIP: 34.118.233.102
+    clusterIPs:
+    - 34.118.233.102
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 32246
+      port: 81
+      protocol: TCP
+      targetPort: 8501
+    selector:
+      app: hyper-application-self-supervised
+    sessionAffinity: None
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 34.132.199.24
+        ipMode: VIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2024-12-22T00:29:45Z"
+    labels:
+      component: apiserver
+      provider: kubernetes
+    name: kubernetes
+    namespace: default
+    resourceVersion: "197"
+    uid: 7c73a89b-34d1-481b-981d-f8067bbcd71c
+  spec:
+    clusterIP: 34.118.224.1
+    clusterIPs:
+    - 34.118.224.1
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 443
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      cloud.google.com/neg: '{"ingress":true}'
+    creationTimestamp: "2024-12-22T18:11:26Z"
+    finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+    name: portfolio
+    namespace: default
+    resourceVersion: "684995"
+    uid: 6422e92a-2437-4dc2-8280-b9ae42fcaff6
+  spec:
+    allocateLoadBalancerNodePorts: true
+    clusterIP: 34.118.237.192
+    clusterIPs:
+    - 34.118.237.192
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 31797
+      port: 85
+      protocol: TCP
+      targetPort: 8505
+    selector:
+      app: portfolio
+    sessionAffinity: None
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 35.202.164.33
+        ipMode: VIP
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2024-12-22T05:30:14Z"
+    generation: 2
+    name: hyper-application-adverserial-robustness
+    namespace: default
+    resourceVersion: "812383"
+    uid: c2c54da5-e1fe-4964-abb5-3011dba948de
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: hyper-application-adverserial-robustness
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: hyper-application-adverserial-robustness
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/adverserial_robustness:2.0
+          imagePullPolicy: IfNotPresent
+          name: hyper-application-adverserial-robustness
+          ports:
+          - containerPort: 83
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2024-12-22T05:34:24Z"
+      lastUpdateTime: "2024-12-22T05:34:24Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2024-12-22T05:30:14Z"
+      lastUpdateTime: "2024-12-22T21:29:38Z"
+      message: ReplicaSet "hyper-application-adverserial-robustness-6cf9658c78" has
+        successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "3"
+    creationTimestamp: "2024-12-22T04:25:05Z"
+    generation: 3
+    name: hyper-application-automating-contracts
+    namespace: default
+    resourceVersion: "1168506"
+    uid: 3ce65a95-117a-4fed-a115-97f2496f681a
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: hyper-application-automating-contracts
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: hyper-application-automating-contracts
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/automating_contracts:3.0
+          imagePullPolicy: IfNotPresent
+          name: hyper-application-automating-contracts
+          ports:
+          - containerPort: 82
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2024-12-22T04:29:17Z"
+      lastUpdateTime: "2024-12-22T04:29:17Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2024-12-22T04:25:05Z"
+      lastUpdateTime: "2024-12-23T06:47:19Z"
+      message: ReplicaSet "hyper-application-automating-contracts-76f75cb656" has
+        successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 3
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2024-12-22T00:48:10Z"
+    generation: 2
+    name: hyper-application-self-supervised
+    namespace: default
+    resourceVersion: "913330"
+    uid: 6ec69373-c86d-4f25-a0af-717efc740377
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: hyper-application-self-supervised
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: hyper-application-self-supervised
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/self_supervised:2.0
+          imagePullPolicy: IfNotPresent
+          name: hyper-application-self-supervised
+          ports:
+          - containerPort: 81
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2024-12-22T00:51:49Z"
+      lastUpdateTime: "2024-12-22T00:51:49Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2024-12-22T00:48:10Z"
+      lastUpdateTime: "2024-12-23T00:06:17Z"
+      message: ReplicaSet "hyper-application-self-supervised-7f6dbfb4db" has successfully
+        progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "19"
+    creationTimestamp: "2024-12-22T18:11:26Z"
+    generation: 19
+    name: portfolio
+    namespace: default
+    resourceVersion: "15671179"
+    uid: 2c9bbe68-ec84-48e4-a1ef-cecf1ddc87e2
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: portfolio
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2025-01-07T14:43:49-08:00"
+        creationTimestamp: null
+        labels:
+          app: portfolio
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:11.0
+          imagePullPolicy: IfNotPresent
+          name: portfolio
+          ports:
+          - containerPort: 85
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2025-01-07T22:57:41Z"
+      lastUpdateTime: "2025-01-07T22:57:41Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2024-12-22T18:11:26Z"
+      lastUpdateTime: "2025-01-07T23:13:57Z"
+      message: ReplicaSet "portfolio-77db684c54" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 19
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2024-12-22T21:25:22Z"
+    generation: 1
+    labels:
+      app: hyper-application-adverserial-robustness
+      pod-template-hash: 6cf9658c78
+    name: hyper-application-adverserial-robustness-6cf9658c78
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: hyper-application-adverserial-robustness
+      uid: c2c54da5-e1fe-4964-abb5-3011dba948de
+    resourceVersion: "812364"
+    uid: 594fa360-4a22-4131-80c9-5d800abbf70e
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: hyper-application-adverserial-robustness
+        pod-template-hash: 6cf9658c78
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: hyper-application-adverserial-robustness
+          pod-template-hash: 6cf9658c78
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/adverserial_robustness:2.0
+          imagePullPolicy: IfNotPresent
+          name: hyper-application-adverserial-robustness
+          ports:
+          - containerPort: 83
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2024-12-22T05:30:14Z"
+    generation: 2
+    labels:
+      app: hyper-application-adverserial-robustness
+      pod-template-hash: 6f74577fbc
+    name: hyper-application-adverserial-robustness-6f74577fbc
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: hyper-application-adverserial-robustness
+      uid: c2c54da5-e1fe-4964-abb5-3011dba948de
+    resourceVersion: "812382"
+    uid: 1e153e31-c506-4bcc-b8a2-53785b0c2f10
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: hyper-application-adverserial-robustness
+        pod-template-hash: 6f74577fbc
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: hyper-application-adverserial-robustness
+          pod-template-hash: 6f74577fbc
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/adverserial_robustness:1.0
+          imagePullPolicy: IfNotPresent
+          name: hyper-application-adverserial-robustness
+          ports:
+          - containerPort: 83
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2024-12-22T04:25:05Z"
+    generation: 2
+    labels:
+      app: hyper-application-automating-contracts
+      pod-template-hash: 546d5866bb
+    name: hyper-application-automating-contracts-546d5866bb
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: hyper-application-automating-contracts
+      uid: 3ce65a95-117a-4fed-a115-97f2496f681a
+    resourceVersion: "838199"
+    uid: 180fb8c2-b499-4da1-89a3-826dee9d598c
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: hyper-application-automating-contracts
+        pod-template-hash: 546d5866bb
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: hyper-application-automating-contracts
+          pod-template-hash: 546d5866bb
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/automating_contracts:1.0
+          imagePullPolicy: IfNotPresent
+          name: hyper-application-automating-contracts
+          ports:
+          - containerPort: 82
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2024-12-22T22:05:23Z"
+    generation: 2
+    labels:
+      app: hyper-application-automating-contracts
+      pod-template-hash: 7458dc4fdc
+    name: hyper-application-automating-contracts-7458dc4fdc
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: hyper-application-automating-contracts
+      uid: 3ce65a95-117a-4fed-a115-97f2496f681a
+    resourceVersion: "1168505"
+    uid: eb114d36-607a-4b29-a3d7-4bb50621d5be
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: hyper-application-automating-contracts
+        pod-template-hash: 7458dc4fdc
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: hyper-application-automating-contracts
+          pod-template-hash: 7458dc4fdc
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/automating_contracts:2.0
+          imagePullPolicy: IfNotPresent
+          name: hyper-application-automating-contracts
+          ports:
+          - containerPort: 82
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "3"
+    creationTimestamp: "2024-12-23T06:41:43Z"
+    generation: 1
+    labels:
+      app: hyper-application-automating-contracts
+      pod-template-hash: 76f75cb656
+    name: hyper-application-automating-contracts-76f75cb656
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: hyper-application-automating-contracts
+      uid: 3ce65a95-117a-4fed-a115-97f2496f681a
+    resourceVersion: "1168495"
+    uid: 13d5a4e3-415b-45c5-ae7b-dc9df60e3343
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: hyper-application-automating-contracts
+        pod-template-hash: 76f75cb656
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: hyper-application-automating-contracts
+          pod-template-hash: 76f75cb656
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/automating_contracts:3.0
+          imagePullPolicy: IfNotPresent
+          name: hyper-application-automating-contracts
+          ports:
+          - containerPort: 82
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2024-12-23T00:01:51Z"
+    generation: 1
+    labels:
+      app: hyper-application-self-supervised
+      pod-template-hash: 7f6dbfb4db
+    name: hyper-application-self-supervised-7f6dbfb4db
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: hyper-application-self-supervised
+      uid: 6ec69373-c86d-4f25-a0af-717efc740377
+    resourceVersion: "913320"
+    uid: 3d648898-e2f9-43be-8a10-a7b3621b44e5
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: hyper-application-self-supervised
+        pod-template-hash: 7f6dbfb4db
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: hyper-application-self-supervised
+          pod-template-hash: 7f6dbfb4db
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/self_supervised:2.0
+          imagePullPolicy: IfNotPresent
+          name: hyper-application-self-supervised
+          ports:
+          - containerPort: 81
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2024-12-22T00:48:10Z"
+    generation: 2
+    labels:
+      app: hyper-application-self-supervised
+      pod-template-hash: fb98c96ff
+    name: hyper-application-self-supervised-fb98c96ff
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: hyper-application-self-supervised
+      uid: 6ec69373-c86d-4f25-a0af-717efc740377
+    resourceVersion: "913329"
+    uid: 07c08a09-987e-445f-b143-b3d33ec53785
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: hyper-application-self-supervised
+        pod-template-hash: fb98c96ff
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: hyper-application-self-supervised
+          pod-template-hash: fb98c96ff
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/self_supervised:1.0
+          imagePullPolicy: IfNotPresent
+          name: hyper-application-self-supervised
+          ports:
+          - containerPort: 81
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "5"
+      deployment.kubernetes.io/revision-history: "3"
+    creationTimestamp: "2024-12-23T19:03:06Z"
+    generation: 4
+    labels:
+      app: portfolio
+      pod-template-hash: 57878fb96
+    name: portfolio-57878fb96
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: portfolio
+      uid: 2c9bbe68-ec84-48e4-a1ef-cecf1ddc87e2
+    resourceVersion: "2697595"
+    uid: 75aff77d-f004-4117-8863-9d7741eee34c
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: portfolio
+        pod-template-hash: 57878fb96
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: portfolio
+          pod-template-hash: 57878fb96
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:4.0
+          imagePullPolicy: IfNotPresent
+          name: portfolio
+          ports:
+          - containerPort: 85
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 4
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "14"
+    creationTimestamp: "2025-01-07T06:50:43Z"
+    generation: 2
+    labels:
+      app: portfolio
+      pod-template-hash: 5c598c9fd9
+    name: portfolio-5c598c9fd9
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: portfolio
+      uid: 2c9bbe68-ec84-48e4-a1ef-cecf1ddc87e2
+    resourceVersion: "15517379"
+    uid: 2e1f0527-1a0d-4464-89c5-7cf3bfb4c82e
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: portfolio
+        pod-template-hash: 5c598c9fd9
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: portfolio
+          pod-template-hash: 5c598c9fd9
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:10.0
+          imagePullPolicy: IfNotPresent
+          name: portfolio
+          ports:
+          - containerPort: 85
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "12"
+      deployment.kubernetes.io/revision-history: 8,10
+    creationTimestamp: "2024-12-26T18:45:56Z"
+    generation: 6
+    labels:
+      app: portfolio
+      pod-template-hash: 5d4554858f
+    name: portfolio-5d4554858f
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: portfolio
+      uid: 2c9bbe68-ec84-48e4-a1ef-cecf1ddc87e2
+    resourceVersion: "13070546"
+    uid: 46c29d57-6048-4027-a4bf-2a7ee4d858ad
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: portfolio
+        pod-template-hash: 5d4554858f
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: portfolio
+          pod-template-hash: 5d4554858f
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:7.0
+          imagePullPolicy: IfNotPresent
+          name: portfolio
+          ports:
+          - containerPort: 85
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 6
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "6"
+      deployment.kubernetes.io/revision-history: "4"
+    creationTimestamp: "2024-12-24T18:26:32Z"
+    generation: 4
+    labels:
+      app: portfolio
+      pod-template-hash: 64f49fbc9
+    name: portfolio-64f49fbc9
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: portfolio
+      uid: 2c9bbe68-ec84-48e4-a1ef-cecf1ddc87e2
+    resourceVersion: "2739794"
+    uid: 993ee78d-4bc5-42a0-b068-c377e97417ac
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: portfolio
+        pod-template-hash: 64f49fbc9
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: portfolio
+          pod-template-hash: 64f49fbc9
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:5.0
+          imagePullPolicy: IfNotPresent
+          name: portfolio
+          ports:
+          - containerPort: 85
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 4
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "17"
+    creationTimestamp: "2025-01-07T22:45:42Z"
+    generation: 2
+    labels:
+      app: portfolio
+      pod-template-hash: 76597b4c84
+    name: portfolio-76597b4c84
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: portfolio
+      uid: 2c9bbe68-ec84-48e4-a1ef-cecf1ddc87e2
+    resourceVersion: "15660361"
+    uid: c4f4df18-cec4-444e-98e0-51c66f823985
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: portfolio
+        pod-template-hash: 76597b4c84
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2025-01-07T14:43:49-08:00"
+        creationTimestamp: null
+        labels:
+          app: portfolio
+          pod-template-hash: 76597b4c84
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:8.0
+          imagePullPolicy: IfNotPresent
+          name: portfolio
+          ports:
+          - containerPort: 85
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "19"
+      deployment.kubernetes.io/revision-history: "16"
+    creationTimestamp: "2025-01-07T22:43:49Z"
+    generation: 3
+    labels:
+      app: portfolio
+      pod-template-hash: 77db684c54
+    name: portfolio-77db684c54
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: portfolio
+      uid: 2c9bbe68-ec84-48e4-a1ef-cecf1ddc87e2
+    resourceVersion: "15671170"
+    uid: 0793ed7b-e741-43f3-9615-973ca5ef2765
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: portfolio
+        pod-template-hash: 77db684c54
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2025-01-07T14:43:49-08:00"
+        creationTimestamp: null
+        labels:
+          app: portfolio
+          pod-template-hash: 77db684c54
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:11.0
+          imagePullPolicy: IfNotPresent
+          name: portfolio
+          ports:
+          - containerPort: 85
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 3
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "15"
+    creationTimestamp: "2025-01-07T19:09:27Z"
+    generation: 2
+    labels:
+      app: portfolio
+      pod-template-hash: 7d96978654
+    name: portfolio-7d96978654
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: portfolio
+      uid: 2c9bbe68-ec84-48e4-a1ef-cecf1ddc87e2
+    resourceVersion: "15651721"
+    uid: 1cbda939-a51d-4e4f-aee1-4b7ee05ed38d
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: portfolio
+        pod-template-hash: 7d96978654
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: portfolio
+          pod-template-hash: 7d96978654
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:11.0
+          imagePullPolicy: IfNotPresent
+          name: portfolio
+          ports:
+          - containerPort: 85
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "11"
+      deployment.kubernetes.io/revision-history: "9"
+    creationTimestamp: "2025-01-04T00:03:59Z"
+    generation: 4
+    labels:
+      app: portfolio
+      pod-template-hash: 7df67d77d8
+    name: portfolio-7df67d77d8
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: portfolio
+      uid: 2c9bbe68-ec84-48e4-a1ef-cecf1ddc87e2
+    resourceVersion: "12819093"
+    uid: 535cfe80-177c-47ad-8ee9-2cd371691fbd
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: portfolio
+        pod-template-hash: 7df67d77d8
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: portfolio
+          pod-template-hash: 7df67d77d8
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:8.0
+          imagePullPolicy: IfNotPresent
+          name: portfolio
+          ports:
+          - containerPort: 85
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 4
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "13"
+    creationTimestamp: "2025-01-05T03:34:08Z"
+    generation: 2
+    labels:
+      app: portfolio
+      pod-template-hash: 7fc887cfbc
+    name: portfolio-7fc887cfbc
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: portfolio
+      uid: 2c9bbe68-ec84-48e4-a1ef-cecf1ddc87e2
+    resourceVersion: "15043448"
+    uid: 2b07b2d1-03be-4f10-9505-2b441941805a
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: portfolio
+        pod-template-hash: 7fc887cfbc
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: portfolio
+          pod-template-hash: 7fc887cfbc
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:9.0
+          imagePullPolicy: IfNotPresent
+          name: portfolio
+          ports:
+          - containerPort: 85
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "7"
+    creationTimestamp: "2024-12-24T23:28:15Z"
+    generation: 2
+    labels:
+      app: portfolio
+      pod-template-hash: 876cd7db6
+    name: portfolio-876cd7db6
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: portfolio
+      uid: 2c9bbe68-ec84-48e4-a1ef-cecf1ddc87e2
+    resourceVersion: "4410272"
+    uid: 75943552-4aef-44d3-b16d-cea6f225eec1
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: portfolio
+        pod-template-hash: 876cd7db6
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: portfolio
+          pod-template-hash: 876cd7db6
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:6.0
+          imagePullPolicy: IfNotPresent
+          name: portfolio
+          ports:
+          - containerPort: 85
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "18"
+    creationTimestamp: "2025-01-07T22:48:57Z"
+    generation: 2
+    labels:
+      app: portfolio
+      pod-template-hash: b75f59477
+    name: portfolio-b75f59477
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: portfolio
+      uid: 2c9bbe68-ec84-48e4-a1ef-cecf1ddc87e2
+    resourceVersion: "15671178"
+    uid: 1ba6d54c-393a-483c-ba68-d933fccc5d03
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: portfolio
+        pod-template-hash: b75f59477
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2025-01-07T14:43:49-08:00"
+        creationTimestamp: null
+        labels:
+          app: portfolio
+          pod-template-hash: b75f59477
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:7.0
+          imagePullPolicy: IfNotPresent
+          name: portfolio
+          ports:
+          - containerPort: 85
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+kind: List
+metadata:
+  resourceVersion: ""
