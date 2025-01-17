@@ -1,68 +1,166 @@
-# Projects Overview
+# Portfolio Projects
 
-This repository contains several projects organized into directories. Each project has its own docker file for containerization and the containers are deployed with Google kubernetes Service  using GKE deployment script. 
-
-## 1. `adversarial_robustness`
-This folder contains projects and code related to evaluating and improving the robustness of machine learning models against adversarial attacks.
-
-### Key Features:
-- Adversarial attack implementations (e.g., FGSM, PGD).
-- Robustness evaluation techniques.
-- Defenses and mitigation strategies.
+This repository contains multiple machine learning and deep learning projects. Each project is self-contained and includes its own scripts, Dockerfiles, and dependencies. Below is an overview of the projects included in this repository.
 
 ---
 
-## 2. `anomaly_detection` (In development)
-This folder includes projects on identifying anomalies in datasets using advanced machine learning and deep learning techniques.
+## 1. **Adversarial Robustness**
 
-### Key Features:
-- XGBoost for anomaly detection.
-- Autoencoders and GAN-based methods.
-- GPU-accelerated model training.
+### Description:
+This project explores techniques to improve the robustness of machine learning models against adversarial attacks.
 
----
+### Directory Structure:
+```
+adversarial_robustness/
+├── scripts/
+├── docker-compose.yml
+├── Dockerfile
+├── requirements.txt
+```
 
-## 3. `automating_contracts`
-This folder focuses on automating the processing and analysis of contracts using machine learning and natural language processing (NLP).
-
-### Key Features:
-- Automated extraction of key contract terms.
-- Legal text classification.
-- Tools for contract digitization.
-
----
-
-## 4. `churn_prediction`
-This folder contains a real-time churn prediction project that predicts vendor churn in various domains.
-
-### Key Features:
-- Churn prediction using Vertex AI.
-- Streamlit UI for monitoring and retraining.
-- Explainability and data drift detection.
-
----
-
-## 5. `self_supervised_contrastive_learning`
-This folder includes projects implementing self-supervised learning methods inspired by frameworks like SimCLR.
-
-### Key Features:
-- Learning image representations via contrastive learning.
-- Self-supervised training on the CIFAR-10 dataset.
-- PyTorch implementation.
-
----
-
-## 6. `yolo_object_detection`
-This folder contains YOLO-based object detection projects for real-time detection tasks.
-
-### Key Features:
-- YOLO model training and evaluation.
-- Custom dataset preparation.
-- Real-time detection demos.
-
----
-
-## How to Use
-1. Clone this repository and run through the code with docker-compose:
+### Setup Instructions:
+1. Install dependencies using the `requirements.txt` file.
    ```bash
-   git clone https://github.com/arunprasathjayaprakash/portfolio.git
+   pip install -r requirements.txt
+   ```
+2. Build and run the Docker container:
+   ```bash
+   docker-compose up --build
+   ```
+
+---
+
+## 2. **Anomaly Detection**
+
+### Description:
+Implements machine learning models to detect anomalies in data using statistical and machine learning approaches.
+
+### Directory Structure:
+```
+anomaly_detection/
+├── scripts/
+│   ├── app.py
+│   ├── stats_dt.py
+│   ├── train.py
+│   └── visual.py
+```
+
+### Setup Instructions:
+1. Navigate to the `anomaly_detection` directory.
+2. Run the `train.py` script to train the anomaly detection model:
+   ```bash
+   python scripts/train.py
+   ```
+3. Use `app.py` to deploy the model or analyze results.
+
+---
+
+## 3. **Automating Contracts**
+
+### Description:
+Automates contract-related processes, including data extraction and document generation.
+
+### Directory Structure:
+```
+automating_contracts/
+├── data/
+├── refered_publications/
+├── scripts/
+├── docker-compose.yml
+├── Dockerfile
+├── README.MD
+├── requirements.txt
+```
+
+### Setup Instructions:
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Run the automation scripts available in the `scripts/` folder.
+
+---
+
+## 4. **Churn Prediction**
+
+### Description:
+Builds machine learning models to predict customer churn using structured datasets.
+
+### Directory Structure:
+```
+churn_prediction/
+├── scripts/
+├── docker-compose.yml
+├── Dockerfile
+├── README.MD
+```
+
+### Setup Instructions:
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Train the churn prediction model by running the scripts.
+
+---
+
+## 5. **Self-Supervised Contrastive Learning**
+
+### Description:
+Explores contrastive learning techniques, including implementations of NT-Xent (Normalized Temperature-Scaled Cross-Entropy Loss).
+
+### Directory Structure:
+```
+self_supervised_contrastive_learning/
+├── scripts/
+├── docker-compose.yml
+├── Dockerfile
+├── NT-Xent Loss Explanation.pdf
+├── README.md
+├── requirements.txt
+```
+
+### Setup Instructions:
+1. Build the Docker container:
+   ```bash
+   docker-compose up --build
+   ```
+2. Run the training scripts for contrastive learning available in the `scripts/` folder.
+
+---
+
+## 6. **YOLO Object Detection**
+
+### Description:
+Implements object detection using the YOLO (You Only Look Once) architecture.
+
+### Directory Structure:
+```
+yolo_object_detection/
+├── data/
+├── input_data/
+├── models/
+├── output/
+├── scripts/
+├── docker-compose.yml
+├── Dockerfile
+├── path_file.json
+├── deployments.yaml
+```
+
+### Setup Instructions:
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Configure the deployment using `deployments.yaml` or `path_file.json`.
+3. Run the YOLO object detection pipeline via the `scripts` folder.
+
+---
+
+## General Notes:
+- Each project contains its own `requirements.txt` file for managing dependencies.
+- Docker support is provided for easy containerization and deployment.
+- Kubenetes scripts for deploying in GKS is available in project main directory
+- GKS needs gcloud credentials in OS environment and set up with "gcloud auth login" for the scripts to dynamically retrive details
+- GKS config files template can be created with the "generate_deployment_config.py" files
