@@ -112,25 +112,3 @@ def train_and_infer(df, classification="Binary"):
     accuracy = accuracy_score(y_test, y_pred)
     print(accuracy)
     return model , x_train
-
-if __name__ == "__main__":
-    '''
-    Static for trianing model in local since container fails when training due to docker limitations
-    '''
-    import os
-    
-    DATA_PATH = 'C:\csulb_projects\portfolio_projects\hyper_application\yolo_object_detection\data\kddcup.data.corrected'
-
-    col_names = [
-        "duration", "protocol_type", "service", "flag", "src_bytes", "dst_bytes", "land", "wrong_fragment", "urgent", "hot",
-        "num_failed_logins", "logged_in", "num_compromised", "root_shell", "su_attempted", "num_root", "num_file_creations",
-        "num_shells", "num_access_files", "num_outbound_cmds", "is_host_login", "is_guest_login", "count", "srv_count",
-        "serror_rate", "srv_serror_rate", "rerror_rate", "srv_rerror_rate", "same_srv_rate", "diff_srv_rate", "srv_diff_host_rate",
-        "dst_host_count", "dst_host_srv_count", "dst_host_same_srv_rate", "dst_host_diff_srv_rate", "dst_host_same_src_port_rate",
-        "dst_host_srv_diff_host_rate", "dst_host_serror_rate", "dst_host_srv_serror_rate", "dst_host_rerror_rate", "dst_host_srv_rerror_rate", "label"
-    ]
-    df = pd.read_csv(DATA_PATH, header=None, names=col_names, index_col=False)
-    model , train_data = train_and_infer(df)
-    import pickle
-    with open('C:\csulb_projects\portfolio_projects\hyper_application\yolo_object_detection\models/xgboost_model.pkl', 'wb') as file:
-        pickle.dump(model, file)
