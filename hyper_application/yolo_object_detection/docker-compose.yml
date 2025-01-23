@@ -1,12 +1,13 @@
 services:
   yolo_object_detection:
     build: .
-    image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:11.0
+    image: us-central1-docker.pkg.dev/manifest-glyph-441000-g2/docker-repo/yolo_object_detection:12.0
     ports:
       - "8505:8505"
     volumes:
       - ./scripts/app.py:/Yolo_object_detection/scripts/app.py
       - ./scripts/app_yolo.py:/Yolo_object_detection/scripts/app_yolo.py
+      - ./scripts/train.py:/Yolo_object_detection/scripts/train.py
       - ./data/kddcup.data.corrected:/Yolo_object_detection/data/kddcup.data.corrected
     deploy:
       resources:
