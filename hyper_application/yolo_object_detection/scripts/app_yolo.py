@@ -71,7 +71,7 @@ def main():
         _ = st.sidebar.radio("Select a Specific Project", list(projects.keys()))
 
         # Load paths from a JSON file
-        with open('path_file.json', 'r') as file:
+        with open(os.path.join(os.path.dirname(os.getcwd()),'path_file.json'), 'r') as file:
             loaded_data = json.load(file)
 
         MODEL_PATH = loaded_data['model_path']
@@ -200,9 +200,8 @@ def main():
     
     elif selected_project == 'Anomaly Detection with XGBoost':
         st.info(""" ** Application is Down for bug fixes. Head back to portfolio to explore more projects!** """)
-        # from app import main as st_main
-        # st_main()
-        
+        from app import main as st_main
+        st_main()
 
 if __name__ == "__main__":
     main()

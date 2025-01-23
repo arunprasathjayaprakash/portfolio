@@ -31,7 +31,7 @@ def streamlit_app():
         Legal professionals, contract managers, and businesses looking to automate contract reviews.
             
 
-            ** Run Submit to see the models preidctions for the sample information**    
+            ** Run Submit to see the models predictions for the sample information**    
         """)
 
     import os

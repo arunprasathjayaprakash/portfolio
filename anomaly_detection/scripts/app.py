@@ -4,14 +4,14 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import xgboost as xgb
 
-import numpy as np
+
 import os
 from stats_dt import statistics , remove_high_correlation
 import visual
 from train import train_and_infer
 
 #static path for serving data will be updated to GCP bigquery
-DATA_PATH = os.path.join(os.path.dirname(os.getcwd()), 'anomaly_detection/data/kddcup.data.corrected')
+DATA_PATH = r"E:\portfolio_projects\portfolio\hyper_application\yolo_object_detection\data\kddcup.data.corrected"
 
 col_names = [
     "duration", "protocol_type", "service", "flag", "src_bytes", "dst_bytes", "land", "wrong_fragment", "urgent", "hot",

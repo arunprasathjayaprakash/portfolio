@@ -72,9 +72,9 @@ def train_and_infer(df, classification="Binary"):
     st.write(f"Model Accuracy: {accuracy:.2f}")
 
     # Confusion Matrix
-    cm = confusion_matrix(y_test, y_pred, labels=present_classes)
-    plt.figure(figsize=(10,10))
-    visual.plot_confusion_matrix(cm, target_names)
-    st.pyplot(plt)
+    # cm = confusion_matrix(y_test, y_pred, labels=present_classes)
+    # plt.figure(figsize=(10,10))
+    # visual.plot_confusion_matrix(cm, target_names)
+    # st.pyplot(plt)
 
     return report, model
