@@ -94,10 +94,94 @@ def main():
         # Predict probabilities
         pred_prob= loaded_model.predict(infer_matrix)
 
+        st.subheader("Explanation of Sample Data")
+
+        # Overview
+        st.write("### Overview")
+        st.write("""
+        This dataset is part of a network traffic classification problem. 
+        Each row represents details about a network connection, and the goal is to predict its behavior, 
+        such as whether it is 'normal' or potentially malicious.
+        """)
+
+        # Key Features Explained
+        st.write("### Key Features Explained")
+
+        # Basic Connection Features
+        st.write("#### Basic Connection Features:")
+        st.write("""
+        - **duration**: Time (in seconds) the connection lasted.
+        - **protocol_type**: Protocol used for communication (e.g., TCP, UDP, ICMP).
+        - **service**: Type of network service accessed (e.g., HTTP, FTP).
+        - **flag**: Status flag of the connection (e.g., SF indicates 'successful connection').
+        """)
+
+        # Traffic Statistics
+        st.write("#### Traffic Statistics:")
+        st.write("""
+        - **src_bytes** and **dst_bytes**: Bytes sent from the source and destination.
+        - **count**: Number of connections to the same host in the last 2 seconds.
+        - **srv_count**: Number of connections to the same service in the last 2 seconds.
+        """)
+
+        # Error Rates
+        st.write("#### Error Rates:")
+        st.write("""
+        - **serror_rate** and **srv_serror_rate**: Fraction of connections with SYN errors.
+        - **rerror_rate** and **srv_rerror_rate**: Fraction of connections with REJ errors.
+        """)
+
+        # Host-Based Features
+        st.write("#### Host-Based Features:")
+        st.write("""
+        - **dst_host_count**: Number of connections made to the destination host.
+        - **dst_host_same_srv_rate**: Fraction of connections to the same service by the destination.
+        """)
+
+        # Sample Data Row Breakdown
+        st.write("### Sample Data Row Breakdown")
+        st.write("""
+        | Feature           Explanation                                  |
+        |----------------------------------------------------------------|
+        | **duration**   --   Connection lasted for 0 seconds.             |
+        | **protocol_type** -- Communication used the TCP protocol.         |
+        | **service**       -- The service accessed was HTTP (web traffic). |
+        | **src_bytes**     -- bytes were sent from the source.             |
+        | **dst_bytes**     -- bytes were sent to the destination.          |
+        | **logged_in**     -- The user successfully logged in.             |
+        | **Prediction**    -- The connection is classified as normal.      |
+        """)
+
         # Convert probabilities to class labels
         json_data = json.loads(json_data)
         json_data["Prediction"] = data['label'].values[np.argmax(pred_prob, axis=1)][0]
         st.json(json_data) # returning data with prediction
+
+        # Feature Importance Visualization
+        st.subheader("Feature Importance Visualization")
+
+        # What Does the Image Show?
+        st.write("### What Does the Image Show?")
+        st.write("""
+                The bar chart displays the importance of each feature in making predictions for the model. 
+                The longer the bar, the more significant the feature is in influencing predictions.
+                """)
+
+        # Top Features
+        st.write("#### Top Features:")
+        st.write("""
+                1. **src_bytes (175):** The number of bytes sent from the source is the most critical factor.
+                2. **dst_host_count (112):** The number of connections to the destination host is the second most influential feature.
+                3. **dst_host_same_src_port_rate (81):** The rate of connections using the same source port is highly significant.
+                """)
+
+        # How to Interpret This?
+        st.write("### How to Interpret This?")
+        st.write("""
+                Features like **src_bytes** or **dst_host_count** are key indicators of network behavior. For example:
+                - A high number of bytes (**src_bytes**) might indicate a large file upload, which could be normal or suspicious based on the context.
+                - A high **dst_host_count** might indicate a potential DoS (Denial-of-Service) attack if many connections are directed to one host.
+                """)
 
         st.write("Feature Importances:")
         fig, ax = plt.subplots(figsize=(10, 10))  

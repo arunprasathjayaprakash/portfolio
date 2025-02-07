@@ -7,15 +7,20 @@ from ultralytics import YOLO
 
 # Streamlit App
 def main():
+
+    #set tab name
+    st.set_page_config(page_title="Portfolio Demo")
+
     # Set up sidebar navigation
     st.sidebar.title("Navigation")
     selected_project = st.sidebar.radio("Select a Project", ["Portfolio", "YOLO Object Detection",
                                                              "Anomaly Detection with XGBoost"])
 
     projects = {
-        "Adversarial Robustness - GenAI": "http://34.28.231.37:83/",  # Replace with your GKE URLs
-        "Automating Legal Contracts (NLP BERT Transformers)": "http://34.132.163.173:82/",
-        "SimCLR Contrastive Learning": "http://34.132.199.24:81/"
+        "Adversarial Robustness - GenAI": "http://34.170.68.234:83/",  # Replace with your GKE URLs
+        "Automating Legal Contracts (NLP BERT Transformers)": "http://104.154.28.26:82/",
+        "SimCLR Contrastive Learning": "http://34.59.102.242:81/",
+        # "Anomaly Detection using XGBoost":"http://35.222.130.163:80"
     }
 
     # Portfolio Section
@@ -25,8 +30,8 @@ def main():
 
         st.markdown(
             """
-            **GitHub Repository**  
-            Check out my entire project collection on [GitHub](https://github.com/arunprasathjayaprakash/portfolio.git).
+            **GitHub Repository / Portfolio website**  
+            Check out my entire project collection on [GitHub](https://github.com/arunprasathjayaprakash/portfolio.git), [Portfolio](https://arun826jp.wixsite.com/my-site).
             """,
             unsafe_allow_html=True
         )
@@ -67,7 +72,7 @@ def main():
         _ = st.sidebar.radio("Select a Specific Project", list(projects.keys()))
 
         # Load paths from a JSON file
-        with open('path_file.json', 'r') as file:
+        with open(os.path.join(os.getcwd(),'feature_store/path_file.json'), 'r') as file:
             loaded_data = json.load(file)
 
         MODEL_PATH = loaded_data['model_path']
@@ -102,7 +107,7 @@ def main():
                     This tool is ideal for professionals in fields such as video analysis, surveillance, and content creation who need efficient and accurate object detection.
                        
 
-                         ** Run Submit to see the models preidctions for the sample video **    
+                         ** Run Submit to see the models predictions for the sample video **    
                     """)
 
         try:
@@ -191,13 +196,10 @@ def main():
                         st.info('Video Has been processed')
 
                     st.video(file_path)
+                
         except Exception as e:
             raise e
-    
-    elif selected_project == 'Anomaly Detection with XGBoost':
-        from app import main as st_main
-        st_main()
-        
-
+    elif selected_project == "Anomaly Detection with XGBoost":
+        st.info("**Container is down for bug fixes will be up soon**")
 if __name__ == "__main__":
     main()

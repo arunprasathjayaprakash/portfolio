@@ -87,7 +87,7 @@ def train_and_infer(df, classification="Binary"):
 
 
     #storing feature set for inference
-    with open(os.path.join(os.path.dirname(os.getcwd()), 'feature_store/feature_set.json'), 'w') as feature:
+    with open(os.path.join(os.path.dirname(os.getcwd()), 'Yolo_object_detection/feature_store/feature_set.json'), 'w') as feature:
         json.dump({"columns": numeric_cat_data.columns.tolist()}, feature)
 
 
@@ -119,7 +119,7 @@ if __name__ == "__main__":
     '''
     import os
     
-    DATA_PATH = 'C:\csulb_projects\portfolio_projects\hyper_application\yolo_object_detection\data\kddcup.data.corrected'
+    DATA_PATH = ''
 
     col_names = [
         "duration", "protocol_type", "service", "flag", "src_bytes", "dst_bytes", "land", "wrong_fragment", "urgent", "hot",
@@ -132,5 +132,5 @@ if __name__ == "__main__":
     df = pd.read_csv(DATA_PATH, header=None, names=col_names, index_col=False)
     model , train_data = train_and_infer(df)
     import pickle
-    with open('C:\csulb_projects\portfolio_projects\hyper_application\yolo_object_detection\models/xgboost_model.pkl', 'wb') as file:
+    with open('E:\portfolio_projects\portfolio\hyper_application\yolo_object_detection\models/xgboost_model.pkl', 'wb') as file:
         pickle.dump(model, file)
