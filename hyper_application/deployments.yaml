@@ -1,0 +1,262 @@
+apiVersion: v1
+items:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2024-12-22T05:30:14Z"
+    generation: 2
+    name: hyper-application-adverserial-robustness
+    namespace: default
+    resourceVersion: "812383"
+    uid: c2c54da5-e1fe-4964-abb5-3011dba948de
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: hyper-application-adverserial-robustness
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: hyper-application-adverserial-robustness
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/educative-2/docker-repo/adverserial_robustness:2.0
+          imagePullPolicy: IfNotPresent
+          name: hyper-application-adverserial-robustness
+          ports:
+          - containerPort: 83
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2024-12-22T05:34:24Z"
+      lastUpdateTime: "2024-12-22T05:34:24Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2024-12-22T05:30:14Z"
+      lastUpdateTime: "2024-12-22T21:29:38Z"
+      message: ReplicaSet "hyper-application-adverserial-robustness-6cf9658c78" has
+        successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "3"
+    creationTimestamp: "2024-12-22T04:25:05Z"
+    generation: 3
+    name: hyper-application-automating-contracts
+    namespace: default
+    resourceVersion: "1168506"
+    uid: 3ce65a95-117a-4fed-a115-97f2496f681a
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: hyper-application-automating-contracts
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: hyper-application-automating-contracts
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/educative-2/docker-repo/automating_contracts:3.0
+          imagePullPolicy: IfNotPresent
+          name: hyper-application-automating-contracts
+          ports:
+          - containerPort: 82
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2024-12-22T04:29:17Z"
+      lastUpdateTime: "2024-12-22T04:29:17Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2024-12-22T04:25:05Z"
+      lastUpdateTime: "2024-12-23T06:47:19Z"
+      message: ReplicaSet "hyper-application-automating-contracts-76f75cb656" has
+        successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 3
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2024-12-22T00:48:10Z"
+    generation: 2
+    name: hyper-application-self-supervised
+    namespace: default
+    resourceVersion: "913330"
+    uid: 6ec69373-c86d-4f25-a0af-717efc740377
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: hyper-application-self-supervised
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: hyper-application-self-supervised
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/educative-2/docker-repo/self_supervised:2.0
+          imagePullPolicy: IfNotPresent
+          name: hyper-application-self-supervised
+          ports:
+          - containerPort: 81
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2024-12-22T00:51:49Z"
+      lastUpdateTime: "2024-12-22T00:51:49Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2024-12-22T00:48:10Z"
+      lastUpdateTime: "2024-12-23T00:06:17Z"
+      message: ReplicaSet "hyper-application-self-supervised-7f6dbfb4db" has successfully
+        progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "19"
+    creationTimestamp: "2024-12-22T18:11:26Z"
+    generation: 19
+    name: portfolio
+    namespace: default
+    resourceVersion: "15671179"
+    uid: 2c9bbe68-ec84-48e4-a1ef-cecf1ddc87e2
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: portfolio
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2025-01-07T14:43:49-08:00"
+        creationTimestamp: null
+        labels:
+          app: portfolio
+      spec:
+        containers:
+        - image: us-central1-docker.pkg.dev/educative-2/docker-repo/yolo_object_detection:11.0
+          imagePullPolicy: IfNotPresent
+          name: portfolio
+          ports:
+          - containerPort: 85
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2025-01-07T22:57:41Z"
+      lastUpdateTime: "2025-01-07T22:57:41Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2024-12-22T18:11:26Z"
+      lastUpdateTime: "2025-01-07T23:13:57Z"
+      message: ReplicaSet "portfolio-77db684c54" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 19
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+kind: List
+metadata:
+  resourceVersion: ""

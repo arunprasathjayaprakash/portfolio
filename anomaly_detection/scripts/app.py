@@ -3,15 +3,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import xgboost as xgb
-
-
+import visual as visual
+import numpy as np
 import os
 from stats_dt import statistics , remove_high_correlation
-import visual
-from train import train_and_infer
+from train import transform_infer , LabelEncoder
+import json
 
-#static path for serving data will be updated to GCP bigquery
-DATA_PATH = r"E:\portfolio_projects\portfolio\hyper_application\yolo_object_detection\data\kddcup.data.corrected"
+
+DATA_PATH = os.path.join(os.path.dirname(os.getcwd()), 'anomaly_detection/data/kddcup.data.corrected')
 
 col_names = [
     "duration", "protocol_type", "service", "flag", "src_bytes", "dst_bytes", "land", "wrong_fragment", "urgent", "hot",
@@ -22,7 +22,6 @@ col_names = [
     "dst_host_srv_diff_host_rate", "dst_host_serror_rate", "dst_host_srv_serror_rate", "dst_host_rerror_rate", "dst_host_srv_rerror_rate", "label"
 ]
 
-
 @st.cache_data
 def load_data():
     '''Returns Data loaded before with the first request
@@ -31,25 +30,25 @@ def load_data():
     returns: None
     
     '''
-    return pd.read_csv(DATA_PATH, header=None, names=col_names, index_col=False)
-
+    #Sampling subset of data visual inference
+    data = pd.read_csv(DATA_PATH, header=None, names=col_names, index_col=False)[:5000] # to things simple in the container
+    return data
 
 def main():
     st.title("Anomaly Detection with XGBoost")
     st.info("This application demonstrates anomaly detection using the KDD Cup dataset and XGBoost.")
-
     data = load_data()
-    st.info("Dataset loaded successfully.")
-
-    menu = ["Explore Data", "Visualize Dataset", "Make Inference"]
+    menu = ["Explore Data", "Visualize Dataset", "Load model and infer new data"]
     choice = st.sidebar.selectbox("Menu", menu)
 
     if choice == "Explore Data":
         st.subheader("Explore Data")
-        st.dataframe(data.head())
-        st.write(f"Shape of the dataset: {data.shape}")
-        st.write("Summary statistics:")
-        st.write(data.describe())
+        with st.spinner("Loading Data"):
+            st.info("Dataset loaded successfully.")
+            st.dataframe(data.head())
+            st.write(f"Shape of the dataset: {data.shape}")
+            st.write("Summary statistics:")
+            st.write(data.describe())
 
         # Correlation Analysis and Removal
         st.subheader("Remove Highly Correlated Features")
@@ -69,18 +68,125 @@ def main():
         visual.plot_data_distribution(data)
         visual.cat_distribution(data)
 
-    elif choice == "Make Inference":
-        st.subheader("Make Inference")
-        
-        with st.spinner("Training the model..."):
-            report, model = train_and_infer(data)
-            st.success("Model trained successfully!")
-            st.json(report)
+    elif choice == "Load model and infer new data":
+        st.subheader("Load model and infer new data")
 
-            st.write("Feature Importances:")
-            fig, ax = plt.subplots(figsize=(10, 10))  
-            xgb.plot_importance(model, ax=ax)      
-            st.pyplot(fig)   
+        st.info("""
+            ** 99% Accurate XGBoost model is loaded and feature importance is reflected below** 
+        """)
+        
+        import pickle
+
+        with open(os.path.join(os.path.dirname(os.getcwd()) ,'anomaly_detection/models/xgboost_model.pkl'), 'rb') as file:
+            loaded_model = pickle.load(file)
+        
+        sample_data = data.sample(1)
+        st.info("""
+                ** Sample data loaded **
+                """)
+        inf_data = sample_data.drop('label',axis=1)
+        json_data = inf_data.to_json()
+
+
+        infer_matrix = transform_infer(sample_data)
+        pred = loaded_model.predict(infer_matrix)
+
+        # Predict probabilities
+        pred_prob= loaded_model.predict(infer_matrix)
+
+        st.subheader("Explanation of Sample Data")
+
+        # Overview
+        st.write("### Overview")
+        st.write("""
+        This dataset is part of a network traffic classification problem. 
+        Each row represents details about a network connection, and the goal is to predict its behavior, 
+        such as whether it is 'normal' or potentially malicious.
+        """)
+
+        # Key Features Explained
+        st.write("### Key Features Explained")
+
+        # Basic Connection Features
+        st.write("#### Basic Connection Features:")
+        st.write("""
+        - **duration**: Time (in seconds) the connection lasted.
+        - **protocol_type**: Protocol used for communication (e.g., TCP, UDP, ICMP).
+        - **service**: Type of network service accessed (e.g., HTTP, FTP).
+        - **flag**: Status flag of the connection (e.g., SF indicates 'successful connection').
+        """)
+
+        # Traffic Statistics
+        st.write("#### Traffic Statistics:")
+        st.write("""
+        - **src_bytes** and **dst_bytes**: Bytes sent from the source and destination.
+        - **count**: Number of connections to the same host in the last 2 seconds.
+        - **srv_count**: Number of connections to the same service in the last 2 seconds.
+        """)
+
+        # Error Rates
+        st.write("#### Error Rates:")
+        st.write("""
+        - **serror_rate** and **srv_serror_rate**: Fraction of connections with SYN errors.
+        - **rerror_rate** and **srv_rerror_rate**: Fraction of connections with REJ errors.
+        """)
+
+        # Host-Based Features
+        st.write("#### Host-Based Features:")
+        st.write("""
+        - **dst_host_count**: Number of connections made to the destination host.
+        - **dst_host_same_srv_rate**: Fraction of connections to the same service by the destination.
+        """)
+
+        # Sample Data Row Breakdown
+        st.write("### Sample Data Row Breakdown")
+        st.write("""
+        | Feature           Explanation                                  |
+        |----------------------------------------------------------------|
+        | **duration**   --   Connection lasted for x seconds.             |
+        | **protocol_type** -- Communication protocol.         |
+        | **service**       -- The service web traffic type. |
+        | **src_bytes**     -- bytes sent from the source.             |
+        | **dst_bytes**     -- bytes sent to the destination.          |
+        | **logged_in**     -- Whether the User has logged in             |
+        | **Prediction**    -- Models Prediction     |
+        """)
+
+        # Convert probabilities to class labels
+        json_data = json.loads(json_data)
+        json_data["Prediction"] = data['label'].values[np.argmax(pred_prob, axis=1)][0]
+        st.json(json_data) # returning data with prediction
+
+        # Feature Importance Visualization
+        st.subheader("Feature Importance Visualization")
+
+        # What Does the Image Show?
+        st.write("### What Does the Image Show?")
+        st.write("""
+                The bar chart displays the importance of each feature in making predictions for the model. 
+                The longer the bar, the more significant the feature is in influencing predictions.
+                """)
+
+        # Top Features
+        st.write("#### Top Features:")
+        st.write("""
+                1. **src_bytes (175):** The number of bytes sent from the source is the most critical factor.
+                2. **dst_host_count (112):** The number of connections to the destination host is the second most influential feature.
+                3. **dst_host_same_src_port_rate (81):** The rate of connections using the same source port is highly significant.
+                """)
+
+        # How to Interpret This?
+        st.write("### How to Interpret This?")
+        st.write("""
+                Features like **src_bytes** or **dst_host_count** are key indicators of network behavior. For example:
+                - A high number of bytes (**src_bytes**) might indicate a large file upload, which could be normal or suspicious based on the context.
+                - A high **dst_host_count** might indicate a potential DoS (Denial-of-Service) attack if many connections are directed to one host.
+                """)
+
+        st.write("Feature Importances:")
+        fig, ax = plt.subplots(figsize=(10, 10))  
+        xgb.plot_importance(loaded_model, ax=ax)      
+        st.pyplot(fig)   
 
 
 if __name__ == "__main__":

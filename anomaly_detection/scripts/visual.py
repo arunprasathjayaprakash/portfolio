@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import streamlit as st
 import seaborn as sns
+import numpy as np
 
 def plot_data_distribution(df):
     ''' Returns data distribution for the dataframe

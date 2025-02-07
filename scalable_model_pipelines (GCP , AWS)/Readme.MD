@@ -29,9 +29,4 @@ Contains serverless functions implemented on Amazon Web Services (AWS), typicall
 - Always follow best practices for securing sensitive information.
 - Ensure all dependencies and configurations are correctly set up before running any code.
 - Refer to individual folders for more detailed documentation.
-
-## Contributing
-Contributions are welcome! Please follow the guidelines below:
-- Fork the repository.
-- Create a feature branch.
-- Submit a pull request with detailed information about your changes.
+- Refer .IPYNB files for quick prototyping modules

@@ -1,0 +1,20 @@
+services:
+  yolo_object_detection:
+    build: .
+    image: us-central1-docker.pkg.dev/portfolio-448805/docker-repo/anomaly_detection:2.0
+    ports:
+      - "8505:8505"
+    volumes:
+      - ./scripts/app.py:/anomaly_detection/scripts/app.py
+      - ./scripts/train.py:/anomaly_detection/scripts/train.py
+      - ./data/kddcup.data.corrected:/anomaly_detection/data/kddcup.data.corrected
+    deploy:
+      resources:
+        limits:
+          memory: 32g  # Limit memory to 16GB
+          cpus: '8.0'  # Limit CPUs to 8 cores
+        reservations:
+          memory: 16g 
+    environment:
+      - STREAMLIT_SERVER_PORT=8505
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0  
