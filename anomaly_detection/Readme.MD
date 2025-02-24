@@ -1,10 +1,8 @@
 # Anomaly Detection
 
-This repository contains a Jupyter notebook for performing anomaly detection for various image and tabular data.
-Detecting anomaly with XGboost for detecting network intrutions and other is an CNN based malware classfication that 
-detects malware in .exe files by converting it into Grayscale images.
+This repository contains scripts for performing anomaly detection. optionally has jupyter files for prototyping and understanding
 
-Note: Refer .ipynb files for implmentation and conceptuall understanding. Run scripts for streamlit application which follows software development standards
+Note: Refer .ipynb files for implmentation and conceptual understanding. Run scripts for streamlit application which follows software development standards
 
 ## Table of Contents
 
@@ -28,6 +26,11 @@ Note: Refer .ipynb files for implmentation and conceptuall understanding. Run sc
     ```bash
     jupyter notebook Image_CNN.ipynb
     jupyter notebook XGBoost.ipynb
+    ```
+    or
+
+    ```bash
+    app.py
     ```
 
 2. Follow the instructions in the notebook to:
@@ -56,42 +59,3 @@ anomaly_detection_with_auto_encoders/
 ```
 
 ---
-
-## Detailed Code Description
-
-### `Xgboost.ipynb  - Binary and multiclass`
-
-The main notebook file that demonstrates anomaly detection using autoencoders.
-
-- **Data Loading and Preprocessing**:
-  - Load the dataset.
-  - Preprocess the data (normalization, splitting into training and test sets).
-
-- **Model Definition**:
-  - Initialize Xgboost with Nvidia Rapids.
-  - Utilize DMatrix for faster higher accurate model
-
-- **Model Training**:
-  - Compile and train the autoencoder model.
-  - Save the trained model.
-
-- **Anomaly Detection**:
-  - Detect the type of anomaly with Xgboost model.
-
-### `Image_CNN.ipynb - Detect and Classify malware in .exe files
-
-The main notebook file that demonstrates anomaly detection using autoencoders.
-
-- **Data Loading and Preprocessing**:
-  - Load the dataset.
-  - Preprocess the data (normalization, splitting into training and test sets).
-
-- **Model Definition**:
-  - Initialize CNN with Pytorch and simpler layers
-
-- **Model Training**:
-  - Compile and train the PyTorch model.
-  - Save the trained model.
-
-- **Anomaly Detection**:
-  - Detect the type of anomaly with Pytorch model.
