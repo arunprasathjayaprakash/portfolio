@@ -52,10 +52,13 @@ Note: Refer .ipynb files for implmentation and conceptual understanding. Run scr
 anomaly_detection_with_auto_encoders/
 │                 
 ├──scripts/ 
-│   - notebook Image_CNN.ipynb
+│   - notebook Image_CNN.ipynb # Implementation and prototyping
 │   - notebook Xgboost.ipynb
+|   - train.py
+|   - stats_dt.py
+|   - visual.py
+|   - app.py
 ├── requirements.txt         # Python dependencies
 ├── README.md                # Project README file
 ```
-
 ---
