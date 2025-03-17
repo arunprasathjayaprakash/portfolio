@@ -17,9 +17,9 @@ def main():
                                                              "Anomaly Detection with XGBoost"])
 
     projects = {
-        "Adversarial Robustness - GenAI": "http://34.170.68.234:83/",  # Replace with your GKE URLs
-        "Automating Legal Contracts (NLP BERT Transformers)": "http://104.154.28.26:82/",
-        "SimCLR Contrastive Learning": "http://34.59.102.242:81/",
+        "Adversarial Robustness - GenAI": "http://35.188.103.170:83",  # Replace with your GKE URLs
+        "Automating Legal Contracts (NLP BERT Transformers)": "http://34.134.205.130:84/",
+        "SimCLR Contrastive Learning": "http://34.68.153.135:82/",
         # "Anomaly Detection using XGBoost":"http://35.222.130.163:80"
     }
 
@@ -52,6 +52,8 @@ def main():
 
             The projects are structured to showcase not only machine learning capabilities but also MLops functionalities, 
             providing scalable solutions to complex challenges.
+
+            ** For all Examples just run submit to see them in action data is preloaded for demo purposes**
             """
         )
 
