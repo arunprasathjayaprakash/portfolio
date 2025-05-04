@@ -1,6 +1,6 @@
 # Portfolio Projects
 
-This repository contains multiple machine learning and deep learning projects. Each project is self-contained and includes its own scripts, Dockerfiles, and dependencies. Below is an overview of the projects included in this repository.
+This repository contains multiple machine learning and deep learning projects hosted under one Streamlit application to host and showcase projects in one application. Each project is self-contained and includes its own scripts, Dockerfiles, and dependencies. Below is an overview of the projects included in this repository.
 
 ---
 
