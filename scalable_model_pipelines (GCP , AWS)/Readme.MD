@@ -1,6 +1,6 @@
-# Project Structure
+# Model Pipelines at Scale
 
-This repository contains workflow implementations for data science workflows that should be used for production pipelines:
+This repository contains workflow implementations for data science workflows that should be used for production pipelines with various options for running production grade pipelines.
 
 ## Folder Structure
 
