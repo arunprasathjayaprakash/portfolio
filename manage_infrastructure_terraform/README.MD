@@ -1,4 +1,4 @@
-# Containerized Application Deployment on Google Cloud Platform (GCP)
+# Containerized Application Deployment on Google Cloud Platform (GCP) with Terraform
 
 This project demonstrates how to streamline containerized application in our case the Churn prediction with streamlit
 deployment on the Google Cloud Platform (GCP) using a combination of CLI and Terraform scripts using Google Cloud Run.
