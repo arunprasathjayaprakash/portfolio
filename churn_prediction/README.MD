@@ -1,4 +1,4 @@
-# Churn Prediction App
+# Churn Prediction Application
 
 This repository contains a Streamlit application for predicting customer churn using machine learning models. The app integrates with Google Cloud Platform services like Vertex AI for model training and prediction, and Google Cloud Storage for data retrieval and credential management.
 
