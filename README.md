@@ -38,35 +38,32 @@ pip install -e .
 
 ### Local Development
 
-1. Copy the example environment file:
-```bash
-cp .env.example .env
+Create a `.streamlit/secrets.toml` file in your project root with your Snowflake credentials:
+
+```toml
+[snowflake]
+account = "your-account-identifier"
+user = "your-username"
+password = "your-password"
+role = "ACCOUNTADMIN"
+warehouse = "COMPUTE_WH"
+database = "DOCUMENT_CHUNKS_DB"
+schema = "public"
 ```
 
-2. Edit the `.env` file with your Snowflake credentials:
-```env
-SNOWFLAKE_ACCOUNT=your-account-identifier
-SNOWFLAKE_USER=your-username
-SNOWFLAKE_PASSWORD=your-password
-SNOWFLAKE_ROLE=ACCOUNTADMIN
-SNOWFLAKE_WAREHOUSE=COMPUTE_WH
-SNOWFLAKE_DATABASE=DOCUMENT_CHUNKS_DB
-SNOWFLAKE_SCHEMA=public
-```
-
-**Important**: Never commit the `.env` file to version control. It contains sensitive credentials.
+**Important**: The `.streamlit/secrets.toml` file is automatically added to `.gitignore` and should never be committed to version control.
 
 ### Streamlit Cloud Deployment
 
-The application automatically detects and uses Streamlit Cloud secrets when deployed. To configure:
+The application automatically uses Streamlit Cloud secrets when deployed. To configure:
 
-1. Push your code to GitHub (make sure `.env` is in `.gitignore`)
+1. Push your code to GitHub
 
 2. Go to [Streamlit Cloud](https://streamlit.io/cloud) and sign in
 
 3. Click "New app" and connect your repository
 
-4. In the app settings, go to "Secrets" and add your Snowflake credentials:
+4. In the app settings, go to "Secrets" and add your Snowflake credentials in TOML format:
 ```toml
 [snowflake]
 account = "your-account-identifier"
@@ -82,11 +79,11 @@ schema = "public"
 
 6. Click "Deploy"
 
-The application will automatically use Streamlit secrets in the cloud and environment variables for local development.
+The application will automatically use Streamlit secrets for both local development and cloud deployment.
 
 ## Usage
 
-1. Ensure your `.env` file is configured with valid Snowflake credentials
+1. Ensure your `.streamlit/secrets.toml` file is configured with valid Snowflake credentials
 
 2. Run the Streamlit application:
 ```bash
@@ -114,10 +111,9 @@ streamlit run app.py
 - **`app.py`**: Main Streamlit application with UI
 - **`snowflake_utils.py`**: Snowflake connection and database operations
 - **`pdf_processor.py`**: PDF text extraction and chunking utilities
-- **`.env`**: Environment variables for Snowflake credentials (not in git, local only)
-- **`.env.example`**: Example environment file template
+- **`.streamlit/secrets.toml`**: Streamlit secrets for Snowflake credentials (local development, not in git)
+- **`.streamlit/secrets.example.toml`**: Example secrets structure for reference
 - **`.streamlit/config.toml`**: Streamlit configuration
-- **`.streamlit/secrets.example.toml`**: Example secrets structure for Streamlit Cloud
 - **`requirements.txt`**: Python dependencies
 - **`pyproject.toml`**: Project metadata and build configuration
 
@@ -144,8 +140,7 @@ The application creates two tables:
 
 - **Team Isolation**: All queries filter by `team_id` to ensure teams can only access their own documents
 - **Access Control**: Implemented at the database query level for security
-- **Environment Variables**: Credentials are stored in `.env` file for local development (excluded from git)
-- **Streamlit Secrets**: Credentials are stored securely in Streamlit Cloud secrets (encrypted and not accessible in code)
+- **Streamlit Secrets**: Credentials are stored securely in `.streamlit/secrets.toml` for local development and encrypted in Streamlit Cloud secrets (not accessible in code)
 
 ## Development
 
@@ -173,7 +168,7 @@ pytest
 ### Connection Issues
 
 If you encounter connection errors:
-1. Verify your Snowflake credentials in the `.env` file
+1. Verify your Snowflake credentials in `.streamlit/secrets.toml`
 2. Ensure your Snowflake account has Cortex AI enabled
 3. Check that the warehouse, database, and schema exist
 4. Verify your user has the necessary permissions

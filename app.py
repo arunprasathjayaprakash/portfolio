@@ -4,11 +4,6 @@ Streamlit application for Snowflake Cortex AI RAG Knowledge Base
 import streamlit as st
 import snowflake_utils
 import pdf_processor
-import os
-from dotenv import load_dotenv
-
-# Load environment variables from .env file (for local development)
-load_dotenv()
 
 # Page configuration (must be called before any other Streamlit commands)
 st.set_page_config(
@@ -19,42 +14,46 @@ st.set_page_config(
 
 def get_config_value(key: str, default: str = "") -> str:
     """
-    Get configuration value from Streamlit secrets (for cloud) or environment variables (for local).
-    Priority: Streamlit secrets > Environment variables > default
+    Get configuration value from Streamlit secrets.
+    Priority: Streamlit secrets > default
+    
+    Requires secrets.toml configuration with structure:
+    [snowflake]
+    account = "..."
+    user = "..."
+    password = "..."
     """
-    # Try Streamlit secrets first (for Streamlit Cloud)
     try:
         if hasattr(st, "secrets") and hasattr(st.secrets, "snowflake"):
             snowflake_secrets = st.secrets.snowflake
-            if isinstance(snowflake_secrets, dict) and key.lower() in snowflake_secrets:
+            # Try to get the value - works with both dict and AttrDict
+            if hasattr(snowflake_secrets, key.lower()):
+                return str(getattr(snowflake_secrets, key.lower()))
+            elif isinstance(snowflake_secrets, dict) and key.lower() in snowflake_secrets:
                 return str(snowflake_secrets[key.lower()])
     except (AttributeError, KeyError, TypeError):
         pass
     
-    # Fall back to environment variables (for local development)
-    env_key = f"SNOWFLAKE_{key}"
-    return os.getenv(env_key, default)
+    return default
 
 # Validate required configuration values
-required_keys = ["ACCOUNT", "USER", "PASSWORD"]
+required_keys = ["account", "user", "password"]
 missing_keys = []
 
 for key in required_keys:
     value = get_config_value(key)
     if not value:
-        missing_keys.append(f"SNOWFLAKE_{key}")
+        missing_keys.append(f"snowflake.{key}")
 
 if missing_keys:
     st.error(f"❌ Missing required configuration: {', '.join(missing_keys)}")
     st.info("""
-    **For Local Development:**
-    Please create a `.env` file based on `.env.example` and fill in your Snowflake credentials.
+    **Configuration Required:**
     
-    **For Streamlit Cloud:**
-    Please configure secrets in Streamlit Cloud dashboard:
-    1. Go to your app settings
-    2. Click on "Secrets"
-    3. Add the required Snowflake credentials
+    Streamlit secrets must be configured. Please add your Snowflake credentials to:
+    
+    **Option 1: Local Development (.streamlit/secrets.toml)**
+    Create or edit `.streamlit/secrets.toml` in your project root:
     """)
     st.code("""
 [snowflake]
@@ -66,17 +65,25 @@ warehouse = "COMPUTE_WH"
 database = "DOCUMENT_CHUNKS_DB"
 schema = "public"
     """, language="toml")
+    st.info("""
+    **Option 2: Streamlit Cloud**
+    1. Go to your app settings on Streamlit Cloud
+    2. Click on "Secrets"
+    3. Add the same configuration in TOML format
+    
+    **Note:** `.streamlit/secrets.toml` is automatically added to `.gitignore` to prevent committing secrets.
+    """)
     st.stop()
 
 # Snowflake connection parameters from secrets or environment variables
 CONNECTION_PARAMS = {
-    "account": get_config_value("ACCOUNT", ""),
-    "user": get_config_value("USER", ""),
-    "password": get_config_value("PASSWORD", ""),
-    "role": get_config_value("ROLE", "ACCOUNTADMIN"),
-    "warehouse": get_config_value("WAREHOUSE", "COMPUTE_WH"),
-    "database": get_config_value("DATABASE", "DOCUMENT_CHUNKS_DB"),
-    "schema": get_config_value("SCHEMA", "public")
+    "account": get_config_value("account", ""),
+    "user": get_config_value("user", ""),
+    "password": get_config_value("password", ""),
+    "role": get_config_value("role", "ACCOUNTADMIN"),
+    "warehouse": get_config_value("warehouse", "COMPUTE_WH"),
+    "database": get_config_value("database", "DOCUMENT_CHUNKS_DB"),
+    "schema": get_config_value("schema", "public")
 }
 
 # Get embedding model configuration (optional, defaults to None which uses Snowflake default)

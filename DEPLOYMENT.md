@@ -16,7 +16,8 @@ Ensure your repository has:
 - ✅ `app.py` (main application file)
 - ✅ `requirements.txt` (with all dependencies)
 - ✅ `.streamlit/config.toml` (Streamlit configuration)
-- ✅ `.gitignore` (excluding `.env` file)
+- ✅ `.streamlit/secrets.toml` (local secrets, excluded via `.gitignore`)
+- ✅ `.gitignore` (excluding `.streamlit/secrets.toml`)
 - ✅ All necessary Python modules (`snowflake_utils.py`, `pdf_processor.py`)
 
 ### 2. Push to GitHub
@@ -115,16 +116,16 @@ To update your deployed app:
 
 ## Environment-Specific Configuration
 
-The application automatically detects the environment:
-- **Local**: Uses `.env` file (via `python-dotenv`)
-- **Streamlit Cloud**: Uses `st.secrets` (configured in dashboard)
+The application uses Streamlit secrets for both local and cloud environments:
+- **Local**: Reads from `.streamlit/secrets.toml`
+- **Streamlit Cloud**: Uses secrets configured in the dashboard
 
 No code changes needed when switching between environments!
 
 ## Security Best Practices
 
-1. ✅ Never commit `.env` files or secrets to Git
-2. ✅ Use Streamlit Cloud secrets for production
+1. ✅ Never commit `.streamlit/secrets.toml` to Git (add to `.gitignore`)
+2. ✅ Use Streamlit Cloud secrets (configured in dashboard) for production
 3. ✅ Rotate credentials periodically
 4. ✅ Use least-privilege roles in Snowflake
 5. ✅ Monitor access logs in Snowflake
