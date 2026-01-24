@@ -38,6 +38,7 @@ def get_config_value(key: str, default: str = "") -> str:
 
 # Validate required configuration values
 required_keys = ["account", "user", "password"]
+required_keys = ["account", "user", "password"]
 missing_keys = []
 
 for key in required_keys:
@@ -75,8 +76,15 @@ schema = "public"
     """)
     st.stop()
 
-# Snowflake connection parameters from secrets or environment variables
+# Snowflake connection parameters from secrets
 CONNECTION_PARAMS = {
+    "account": get_config_value("account", ""),
+    "user": get_config_value("user", ""),
+    "password": get_config_value("password", ""),
+    "role": get_config_value("role", "ACCOUNTADMIN"),
+    "warehouse": get_config_value("warehouse", "COMPUTE_WH"),
+    "database": get_config_value("database", "DOCUMENT_CHUNKS_DB"),
+    "schema": get_config_value("schema", "public")
     "account": get_config_value("account", ""),
     "user": get_config_value("user", ""),
     "password": get_config_value("password", ""),
@@ -87,7 +95,8 @@ CONNECTION_PARAMS = {
 }
 
 # Get embedding model configuration (optional, defaults to None which uses Snowflake default)
-EMBEDDING_MODEL = get_config_value("EMBEDDING_MODEL", "").strip() or None
+# Load from secrets.toml under [snowflake] section
+EMBEDDING_MODEL = get_config_value("embedding_model", "").strip() or None
 
 # Initialize session state
 if "snowflake_manager" not in st.session_state:
