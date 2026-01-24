@@ -4,11 +4,6 @@ Streamlit application for Snowflake Cortex AI RAG Knowledge Base
 import streamlit as st
 import snowflake_utils
 import pdf_processor
-import os
-from dotenv import load_dotenv
-
-# Load environment variables from .env file (for local development)
-load_dotenv()
 
 # Page configuration (must be called before any other Streamlit commands)
 st.set_page_config(
@@ -19,10 +14,9 @@ st.set_page_config(
 
 def get_config_value(key: str, default: str = "") -> str:
     """
-    Get configuration value from Streamlit secrets (for cloud) or environment variables (for local).
-    Priority: Streamlit secrets > Environment variables > default
+    Get configuration value from Streamlit secrets (secrets.toml in .streamlit folder).
     """
-    # Try Streamlit secrets first (for Streamlit Cloud)
+    # Try Streamlit secrets first
     try:
         if hasattr(st, "secrets") and hasattr(st.secrets, "snowflake"):
             snowflake_secrets = st.secrets.snowflake
@@ -31,12 +25,11 @@ def get_config_value(key: str, default: str = "") -> str:
     except (AttributeError, KeyError, TypeError):
         pass
     
-    # Fall back to environment variables (for local development)
-    env_key = f"SNOWFLAKE_{key}"
-    return os.getenv(env_key, default)
+    # Return default if not found
+    return default
 
 # Validate required configuration values
-required_keys = ["ACCOUNT", "USER", "PASSWORD"]
+required_keys = ["account", "user", "password"]
 missing_keys = []
 
 for key in required_keys:
@@ -47,14 +40,10 @@ for key in required_keys:
 if missing_keys:
     st.error(f"❌ Missing required configuration: {', '.join(missing_keys)}")
     st.info("""
-    **For Local Development:**
-    Please create a `.env` file based on `.env.example` and fill in your Snowflake credentials.
+    Please configure secrets in `~/.streamlit/secrets.toml`:
     
-    **For Streamlit Cloud:**
-    Please configure secrets in Streamlit Cloud dashboard:
-    1. Go to your app settings
-    2. Click on "Secrets"
-    3. Add the required Snowflake credentials
+    1. Create or edit `~/.streamlit/secrets.toml`
+    2. Add your Snowflake credentials
     """)
     st.code("""
 [snowflake]
@@ -68,19 +57,20 @@ schema = "public"
     """, language="toml")
     st.stop()
 
-# Snowflake connection parameters from secrets or environment variables
+# Snowflake connection parameters from secrets
 CONNECTION_PARAMS = {
-    "account": get_config_value("ACCOUNT", ""),
-    "user": get_config_value("USER", ""),
-    "password": get_config_value("PASSWORD", ""),
-    "role": get_config_value("ROLE", "ACCOUNTADMIN"),
-    "warehouse": get_config_value("WAREHOUSE", "COMPUTE_WH"),
-    "database": get_config_value("DATABASE", "DOCUMENT_CHUNKS_DB"),
-    "schema": get_config_value("SCHEMA", "public")
+    "account": get_config_value("account", ""),
+    "user": get_config_value("user", ""),
+    "password": get_config_value("password", ""),
+    "role": get_config_value("role", "ACCOUNTADMIN"),
+    "warehouse": get_config_value("warehouse", "COMPUTE_WH"),
+    "database": get_config_value("database", "DOCUMENT_CHUNKS_DB"),
+    "schema": get_config_value("schema", "public")
 }
 
 # Get embedding model configuration (optional, defaults to None which uses Snowflake default)
-EMBEDDING_MODEL = get_config_value("EMBEDDING_MODEL", "").strip() or None
+# Load from secrets.toml under [snowflake] section
+EMBEDDING_MODEL = get_config_value("embedding_model", "").strip() or None
 
 # Initialize session state
 if "snowflake_manager" not in st.session_state:
