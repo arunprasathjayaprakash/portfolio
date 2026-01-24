@@ -85,13 +85,6 @@ CONNECTION_PARAMS = {
     "warehouse": get_config_value("warehouse", "COMPUTE_WH"),
     "database": get_config_value("database", "DOCUMENT_CHUNKS_DB"),
     "schema": get_config_value("schema", "public")
-    "account": get_config_value("account", ""),
-    "user": get_config_value("user", ""),
-    "password": get_config_value("password", ""),
-    "role": get_config_value("role", "ACCOUNTADMIN"),
-    "warehouse": get_config_value("warehouse", "COMPUTE_WH"),
-    "database": get_config_value("database", "DOCUMENT_CHUNKS_DB"),
-    "schema": get_config_value("schema", "public")
 }
 
 # Get embedding model configuration (optional, defaults to None which uses Snowflake default)
